@@ -1,0 +1,24 @@
+# MySQL credentials
+config/db.properties
+
+# Java compiled files
+*.class
+
+# Build/output folders
+bin/
+out/
+target/
+
+# VS Code
+.vscode/
+
+# IDE files
+.idea/
+*.iml
+
+# Environment files
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
