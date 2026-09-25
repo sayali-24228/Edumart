@@ -214,10 +214,6 @@ public class DonationDAO {
                         con.prepareStatement(query)
         ) {
 
-            if (con == null) {
-                return false;
-            }
-
             ps.setInt(
                     1,
                     donationId

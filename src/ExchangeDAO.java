@@ -33,10 +33,6 @@ public class ExchangeDAO {
                 PreparedStatement ps = con.prepareStatement(query)
         ) {
 
-            if (con == null) {
-                return false;
-            }
-
             ps.setInt(1, ownerId);
             ps.setString(2, offeredItem);
             ps.setString(3, offeredDescription);
@@ -82,10 +78,6 @@ public class ExchangeDAO {
                 Connection con = DBConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(query)
         ) {
-
-            if (con == null) {
-                return list;
-            }
 
             ps.setInt(1, currentUserId);
 
@@ -171,10 +163,6 @@ public class ExchangeDAO {
                 Connection con = DBConnection.getConnection();
                 PreparedStatement ps = con.prepareStatement(query)
         ) {
-
-            if (con == null) {
-                return false;
-            }
 
             ps.setInt(1, exchangeId);
             ps.setInt(2, ownerId);

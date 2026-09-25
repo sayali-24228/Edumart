@@ -133,13 +133,11 @@ public final class UIUtils {
     private static final class RoundedButton extends JButton {
         private Color normalBackground;
         private Color hoverBackground;
-        private final Color foregroundColor;
 
         RoundedButton(String text, Color background, Color foreground) {
             super(text);
             this.normalBackground = background;
             this.hoverBackground = background;
-            this.foregroundColor = foreground;
 
             setForeground(foreground);
             setBackground(background);

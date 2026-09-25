@@ -110,10 +110,6 @@ public class DashboardDAO {
                         con.prepareStatement(query)
         ) {
 
-            if (con == null) {
-                return 0;
-            }
-
             ps.setInt(
                     1,
                     userId

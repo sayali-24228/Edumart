@@ -24,9 +24,6 @@ public class ExchangeRequestDAO {
                         con.prepareStatement(query)
         ) {
 
-            if (con == null) {
-                return false;
-            }
 
             ps.setInt(1, exchangeId);
             ps.setInt(2, requesterId);
@@ -72,10 +69,6 @@ public class ExchangeRequestDAO {
                 PreparedStatement ps =
                         con.prepareStatement(query)
         ) {
-
-            if (con == null) {
-                return list;
-            }
 
             ps.setInt(1, ownerId);
 
@@ -145,11 +138,6 @@ public class ExchangeRequestDAO {
                 PreparedStatement ps =
                         con.prepareStatement(query)
         ) {
-
-            if (con == null) {
-                return false;
-            }
-
             ps.setString(1, status);
             ps.setInt(2, requestId);
             ps.setInt(3, ownerId);
