@@ -46,18 +46,12 @@ public class ExchangeFrame extends JFrame {
                 "EduMart - Exchange Items"
         );
 
-        setSize(
-                1200,
-                750
-        );
+        setMinimumSize(new Dimension(1000, 650));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        setLocationRelativeTo(null);
-
-        setDefaultCloseOperation(
+                setDefaultCloseOperation(
                 JFrame.DISPOSE_ON_CLOSE
         );
-
-        setResizable(false);
 
         createUI();
 

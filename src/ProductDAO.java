@@ -485,6 +485,75 @@ public class ProductDAO {
         return product;
     }
         // ==========================================
+    // GET RELATED PRODUCTS
+    // ==========================================
+
+    public List<Product> getRelatedProducts(
+            int productId,
+            String category,
+            int limit) {
+
+        List<Product> products = new ArrayList<>();
+
+        String query =
+                "SELECT * FROM products " +
+                "WHERE id <> ? AND category = ? " +
+                "ORDER BY created_at DESC LIMIT ?";
+
+        try (Connection con = DBConnection.getConnection()) {
+            if (con == null) return products;
+
+            try (PreparedStatement ps = con.prepareStatement(query)) {
+                ps.setInt(1, productId);
+                ps.setString(2, category == null ? "" : category);
+                ps.setInt(3, limit);
+
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        products.add(createProductFromResultSet(rs));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (products.size() < limit) {
+            String fallback =
+                    "SELECT * FROM products WHERE id <> ? " +
+                    "ORDER BY created_at DESC LIMIT ?";
+
+            try (Connection con = DBConnection.getConnection()) {
+                if (con == null) return products;
+
+                try (PreparedStatement ps = con.prepareStatement(fallback)) {
+                    ps.setInt(1, productId);
+                    ps.setInt(2, limit);
+
+                    try (ResultSet rs = ps.executeQuery()) {
+                        while (rs.next() && products.size() < limit) {
+                            Product p = createProductFromResultSet(rs);
+                            boolean duplicate = false;
+                            for (Product existing : products) {
+                                if (existing.getId() == p.getId()) {
+                                    duplicate = true;
+                                    break;
+                                }
+                            }
+                            if (!duplicate) products.add(p);
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return products;
+    }
+
+
+    // ==========================================
         // GET PRODUCTS OF A SELLER
         // ==========================================
 

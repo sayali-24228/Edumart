@@ -247,3 +247,51 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2026-09-18  7:57:52
+
+USE edumart;
+
+-- =========================================================
+-- 1. Donation requests
+-- =========================================================
+CREATE TABLE IF NOT EXISTS donation_requests (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    donation_id INT NOT NULL,
+    requester_id INT NOT NULL,
+    message TEXT,
+    status VARCHAR(30) DEFAULT 'Pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (donation_id)
+        REFERENCES donations(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (requester_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+-- =========================================================
+-- 2. Make sure the extended Exchange columns exist.
+-- Run only the ALTER statements for columns that are missing.
+-- If you already added these columns, do not run duplicate
+-- ALTER statements.
+-- =========================================================
+
+-- Expected exchanges columns used by the updated application:
+-- image_path
+-- condition_type
+-- wanted_category
+-- additional_requirements
+
+-- Your current project already contains these columns according
+-- to the supplied ExchangeDAO/ExchangeFrame code, so no ALTER
+-- is required here.
+
+-- =========================================================
+-- 3. Verify
+-- =========================================================
+SHOW TABLES;
+
+DESCRIBE donation_requests;
+DESCRIBE donations;
+DESCRIBE exchanges;

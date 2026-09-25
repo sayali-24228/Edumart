@@ -22,19 +22,15 @@ public class MainFrame extends JFrame {
 
         setTitle("EduMart - Student Marketplace");
 
-        setSize(1200, 750);
-
-        setLocationRelativeTo(null);
+        setMinimumSize(new Dimension(1000, 650));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        setResizable(false);
 
         createUI();
 
         showHome();
     }
-
 
     // ==========================================
     // CREATE UI
@@ -42,40 +38,24 @@ public class MainFrame extends JFrame {
 
     private void createUI() {
 
-        JPanel mainPanel =
-                new JPanel(new BorderLayout());
-
-        mainPanel.setBackground(
-                UIUtils.BACKGROUND
-        );
-
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(UIUtils.BACKGROUND);
 
         // ======================================
         // SIDEBAR
         // ======================================
 
-        JPanel sidebar =
-                new JPanel(new BorderLayout());
-
-        sidebar.setPreferredSize(
-                new Dimension(220, 750)
-        );
-
-        sidebar.setBackground(
-                UIUtils.SIDEBAR
-        );
-
+        JPanel sidebar = new JPanel(new BorderLayout());
+        sidebar.setPreferredSize(new Dimension(220, 750));
+        sidebar.setBackground(UIUtils.SIDEBAR);
 
         // ======================================
         // LOGO
         // ======================================
 
-        JPanel logoPanel =
-                new JPanel();
+        JPanel logoPanel = new JPanel();
 
-        logoPanel.setBackground(
-                UIUtils.SIDEBAR
-        );
+        logoPanel.setBackground(UIUtils.SIDEBAR);
 
         logoPanel.setLayout(
                 new BoxLayout(
@@ -93,9 +73,7 @@ public class MainFrame extends JFrame {
                 )
         );
 
-
-        JLabel logo =
-                new JLabel("EduMart");
+        JLabel logo = new JLabel("EduMart");
 
         logo.setFont(
                 new Font(
@@ -107,11 +85,8 @@ public class MainFrame extends JFrame {
 
         logo.setForeground(Color.WHITE);
 
-
         JLabel subtitle =
-                new JLabel(
-                        "Student Marketplace"
-                );
+                new JLabel("Student Marketplace");
 
         subtitle.setFont(
                 new Font(
@@ -122,13 +97,8 @@ public class MainFrame extends JFrame {
         );
 
         subtitle.setForeground(
-                new Color(
-                        156,
-                        163,
-                        175
-                )
+                new Color(156, 163, 175)
         );
-
 
         logoPanel.add(logo);
 
@@ -138,23 +108,18 @@ public class MainFrame extends JFrame {
 
         logoPanel.add(subtitle);
 
-
         sidebar.add(
                 logoPanel,
                 BorderLayout.NORTH
         );
 
-
         // ======================================
         // MENU
         // ======================================
 
-        JPanel menuPanel =
-                new JPanel();
+        JPanel menuPanel = new JPanel();
 
-        menuPanel.setBackground(
-                UIUtils.SIDEBAR
-        );
+        menuPanel.setBackground(UIUtils.SIDEBAR);
 
         menuPanel.setLayout(
                 new BoxLayout(
@@ -163,97 +128,50 @@ public class MainFrame extends JFrame {
                 )
         );
 
-
-        // ======================================
-        // SIDEBAR BUTTONS
-        // ======================================
-
         JButton homeButton =
-                UIUtils.createSidebarButton(
-                        "  Home"
-                );
-
+                UIUtils.createSidebarButton("  Home");
 
         JButton browseButton =
-                UIUtils.createSidebarButton(
-                        "  Browse Products"
-                );
-
+                UIUtils.createSidebarButton("  Browse Products");
 
         JButton sellButton =
-                UIUtils.createSidebarButton(
-                        "  Sell an Item"
-                );
-
+                UIUtils.createSidebarButton("  Sell an Item");
 
         JButton cartButton =
-                UIUtils.createSidebarButton(
-                        "  My Cart"
-                );
-
+                UIUtils.createSidebarButton("  My Cart");
 
         JButton ordersButton =
-                UIUtils.createSidebarButton(
-                        "  My Orders"
-                );
-
+                UIUtils.createSidebarButton("  My Orders");
 
         JButton productsButton =
-                UIUtils.createSidebarButton(
-                        "  My Products"
-                );
-
+                UIUtils.createSidebarButton("  My Products");
 
         JButton favoritesButton =
-                UIUtils.createSidebarButton(
-                        "  Favorites"
-                );
-
+                UIUtils.createSidebarButton("  Favorites");
 
         JButton sellerOrdersButton =
-                UIUtils.createSidebarButton(
-                        "  Seller Orders"
-                );
-
+                UIUtils.createSidebarButton("  Seller Orders");
 
         JButton profileButton =
-                UIUtils.createSidebarButton(
-                        "  Seller Profile"
-                );
-
+                UIUtils.createSidebarButton("  Seller Profile");
 
         JButton dashboardButton =
-                UIUtils.createSidebarButton(
-                        "  Dashboard"
-                );
-
+                UIUtils.createSidebarButton("  Dashboard");
 
         JButton donateButton =
-                UIUtils.createSidebarButton(
-                        "  Donate"
-                );
-
+                UIUtils.createSidebarButton("  Donate");
 
         JButton exchangeButton =
-                UIUtils.createSidebarButton(
-                        "  Exchange"
-                );
-
+                UIUtils.createSidebarButton("  Exchange");
 
         JButton exchangeRequestsButton =
-                UIUtils.createSidebarButton(
-                        "  Exchange Requests"
-                );
+                UIUtils.createSidebarButton("  Exchange Requests");
 
-
-        // ======================================
-        // ADD BUTTONS TO MENU
-        // ======================================
+        JButton donationRequestsButton =
+                UIUtils.createSidebarButton("  Donation Requests");
 
         menuPanel.add(homeButton);
-
         menuPanel.add(browseButton);
-
         menuPanel.add(sellButton);
 
         menuPanel.add(
@@ -261,15 +179,10 @@ public class MainFrame extends JFrame {
         );
 
         menuPanel.add(cartButton);
-
         menuPanel.add(ordersButton);
-
         menuPanel.add(productsButton);
-
         menuPanel.add(favoritesButton);
-
         menuPanel.add(sellerOrdersButton);
-
         menuPanel.add(profileButton);
 
         menuPanel.add(
@@ -277,22 +190,17 @@ public class MainFrame extends JFrame {
         );
 
         menuPanel.add(dashboardButton);
-
         menuPanel.add(donateButton);
-
         menuPanel.add(exchangeButton);
-
         menuPanel.add(exchangeRequestsButton);
-
+        menuPanel.add(donationRequestsButton);
 
         // ======================================
-        // SCROLLABLE SIDEBAR MENU
+        // SCROLLABLE SIDEBAR
         // ======================================
 
         JScrollPane menuScroll =
-                new JScrollPane(
-                        menuPanel
-                );
+                new JScrollPane(menuPanel);
 
         menuScroll.setBorder(null);
 
@@ -307,27 +215,20 @@ public class MainFrame extends JFrame {
         menuScroll.getVerticalScrollBar()
                 .setUnitIncrement(12);
 
-        menuScroll.setBackground(
-                UIUtils.SIDEBAR
-        );
-
+        menuScroll.setBackground(UIUtils.SIDEBAR);
 
         sidebar.add(
                 menuScroll,
                 BorderLayout.CENTER
         );
 
-
         // ======================================
         // USER SECTION
         // ======================================
 
-        JPanel bottomPanel =
-                new JPanel();
+        JPanel bottomPanel = new JPanel();
 
-        bottomPanel.setBackground(
-                UIUtils.SIDEBAR
-        );
+        bottomPanel.setBackground(UIUtils.SIDEBAR);
 
         bottomPanel.setLayout(
                 new BoxLayout(
@@ -345,11 +246,8 @@ public class MainFrame extends JFrame {
                 )
         );
 
-
         JLabel loggedUser =
-                new JLabel(
-                        currentUser.getName()
-                );
+                new JLabel(currentUser.getName());
 
         loggedUser.setFont(
                 new Font(
@@ -359,15 +257,10 @@ public class MainFrame extends JFrame {
                 )
         );
 
-        loggedUser.setForeground(
-                Color.WHITE
-        );
-
+        loggedUser.setForeground(Color.WHITE);
 
         JLabel email =
-                new JLabel(
-                        currentUser.getEmail()
-                );
+                new JLabel(currentUser.getEmail());
 
         email.setFont(
                 new Font(
@@ -378,19 +271,11 @@ public class MainFrame extends JFrame {
         );
 
         email.setForeground(
-                new Color(
-                        156,
-                        163,
-                        175
-                )
+                new Color(156, 163, 175)
         );
 
-
         JButton logoutButton =
-                UIUtils.createSidebarButton(
-                        "  Logout"
-                );
-
+                UIUtils.createSidebarButton("  Logout");
 
         bottomPanel.add(loggedUser);
 
@@ -406,26 +291,21 @@ public class MainFrame extends JFrame {
 
         bottomPanel.add(logoutButton);
 
-
         sidebar.add(
                 bottomPanel,
                 BorderLayout.SOUTH
         );
-
 
         // ======================================
         // RIGHT PANEL
         // ======================================
 
         JPanel rightPanel =
-                new JPanel(
-                        new BorderLayout()
-                );
+                new JPanel(new BorderLayout());
 
         rightPanel.setBackground(
                 UIUtils.BACKGROUND
         );
-
 
         // ======================================
         // TOP BAR
@@ -439,9 +319,7 @@ public class MainFrame extends JFrame {
                         )
                 );
 
-        topBar.setBackground(
-                UIUtils.WHITE
-        );
+        topBar.setBackground(UIUtils.WHITE);
 
         topBar.setBorder(
                 new EmptyBorder(
@@ -452,11 +330,8 @@ public class MainFrame extends JFrame {
                 )
         );
 
-
         JLabel pageTitle =
-                new JLabel(
-                        "Marketplace"
-                );
+                new JLabel("Marketplace");
 
         pageTitle.setFont(
                 new Font(
@@ -466,10 +341,7 @@ public class MainFrame extends JFrame {
                 )
         );
 
-        pageTitle.setForeground(
-                UIUtils.TEXT
-        );
-
+        pageTitle.setForeground(UIUtils.TEXT);
 
         // ======================================
         // SEARCH
@@ -483,10 +355,7 @@ public class MainFrame extends JFrame {
                         )
                 );
 
-        searchPanel.setBackground(
-                UIUtils.WHITE
-        );
-
+        searchPanel.setBackground(UIUtils.WHITE);
 
         searchField =
                 UIUtils.createTextField();
@@ -498,11 +367,8 @@ public class MainFrame extends JFrame {
                 )
         );
 
-
         JButton searchButton =
-                UIUtils.createButton(
-                        "Search"
-                );
+                UIUtils.createButton("Search");
 
         searchButton.setPreferredSize(
                 new Dimension(
@@ -510,7 +376,6 @@ public class MainFrame extends JFrame {
                         40
                 )
         );
-
 
         searchPanel.add(
                 searchField,
@@ -522,11 +387,9 @@ public class MainFrame extends JFrame {
                 BorderLayout.EAST
         );
 
-
         JLabel userLabel =
                 new JLabel(
-                        "Hi, "
-                        + currentUser.getName()
+                        "Hi, " + currentUser.getName()
                 );
 
         userLabel.setFont(
@@ -537,10 +400,7 @@ public class MainFrame extends JFrame {
                 )
         );
 
-        userLabel.setForeground(
-                UIUtils.TEXT
-        );
-
+        userLabel.setForeground(UIUtils.TEXT);
 
         topBar.add(
                 pageTitle,
@@ -557,12 +417,10 @@ public class MainFrame extends JFrame {
                 BorderLayout.EAST
         );
 
-
         rightPanel.add(
                 topBar,
                 BorderLayout.NORTH
         );
-
 
         // ======================================
         // CONTENT
@@ -577,12 +435,10 @@ public class MainFrame extends JFrame {
                 UIUtils.BACKGROUND
         );
 
-
         rightPanel.add(
                 contentPanel,
                 BorderLayout.CENTER
         );
-
 
         // ======================================
         // MAIN PANEL
@@ -598,11 +454,7 @@ public class MainFrame extends JFrame {
                 BorderLayout.CENTER
         );
 
-
-        setContentPane(
-                mainPanel
-        );
-
+        setContentPane(mainPanel);
 
         // ======================================
         // BUTTON EVENTS
@@ -612,156 +464,81 @@ public class MainFrame extends JFrame {
                 e -> showHome()
         );
 
-
         browseButton.addActionListener(
                 e -> openBrowseProducts("")
         );
 
-
         sellButton.addActionListener(
-                e -> {
-
-                    new SellProductFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new SellProductFrame(
+                        currentUser
+                ).setVisible(true)
         );
-
 
         cartButton.addActionListener(
-                e -> {
-
-                    new MyCartFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new MyCartFrame(
+                        currentUser
+                ).setVisible(true)
         );
-
 
         ordersButton.addActionListener(
-                e -> {
-
-                    new MyOrdersFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new MyOrdersFrame(
+                        currentUser
+                ).setVisible(true)
         );
-
 
         productsButton.addActionListener(
-                e -> {
-
-                    new MyProductsFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new MyProductsFrame(
+                        currentUser
+                ).setVisible(true)
         );
-
 
         favoritesButton.addActionListener(
-                e -> {
-
-                    new FavoritesFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new FavoritesFrame(
+                        currentUser
+                ).setVisible(true)
         );
-
 
         sellerOrdersButton.addActionListener(
-                e -> {
-
-                    new SellerOrdersFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new SellerOrdersFrame(
+                        currentUser
+                ).setVisible(true)
         );
-
-
-        // ======================================
-        // SELLER PROFILE
-        // ======================================
 
         profileButton.addActionListener(
-                e -> {
-
-                    new SellerProfileFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new SellerProfileFrame(
+                        currentUser
+                ).setVisible(true)
         );
-
-
-        // ======================================
-        // DASHBOARD
-        // ======================================
 
         dashboardButton.addActionListener(
-                e -> {
-
-                    new DashboardFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new DashboardFrame(
+                        currentUser
+                ).setVisible(true)
         );
-
-
-        // ======================================
-        // DONATE
-        // ======================================
 
         donateButton.addActionListener(
-                e -> {
-
-                    new DonateFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new DonateFrame(
+                        currentUser
+                ).setVisible(true)
         );
-
-
-        // ======================================
-        // EXCHANGE
-        // ======================================
 
         exchangeButton.addActionListener(
-                e -> {
-
-                    new ExchangeFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new ExchangeFrame(
+                        currentUser
+                ).setVisible(true)
         );
-
-
-        // ======================================
-        // EXCHANGE REQUESTS
-        // ======================================
 
         exchangeRequestsButton.addActionListener(
-                e -> {
-
-                    new ExchangeRequestsFrame(
-                            currentUser
-                    ).setVisible(true);
-
-                }
+                e -> new ExchangeRequestsFrame(
+                        currentUser
+                ).setVisible(true)
         );
 
-
-        // ======================================
-        // SEARCH
-        // ======================================
+        donationRequestsButton.addActionListener(
+                e -> new DonationRequestsFrame(
+                        currentUser
+                ).setVisible(true)
+        );
 
         searchButton.addActionListener(
                 e -> openBrowseProducts(
@@ -769,23 +546,16 @@ public class MainFrame extends JFrame {
                 )
         );
 
-
         searchField.addActionListener(
                 e -> openBrowseProducts(
                         searchField.getText().trim()
                 )
         );
 
-
-        // ======================================
-        // LOGOUT
-        // ======================================
-
         logoutButton.addActionListener(
                 e -> logout()
         );
     }
-
 
     // ==========================================
     // HOME
@@ -795,9 +565,8 @@ public class MainFrame extends JFrame {
 
         contentPanel.removeAll();
 
-
-        JPanel homePanel =
-                new JPanel();
+        ViewportWidthPanel homePanel =
+                new ViewportWidthPanel();
 
         homePanel.setBackground(
                 UIUtils.BACKGROUND
@@ -818,7 +587,6 @@ public class MainFrame extends JFrame {
                         BoxLayout.Y_AXIS
                 )
         );
-
 
         // ======================================
         // WELCOME CARD
@@ -849,9 +617,11 @@ public class MainFrame extends JFrame {
                 )
         );
 
+        welcomeCard.setAlignmentX(
+                Component.LEFT_ALIGNMENT
+        );
 
-        JPanel welcomeText =
-                new JPanel();
+        JPanel welcomeText = new JPanel();
 
         welcomeText.setBackground(
                 UIUtils.PRIMARY
@@ -864,12 +634,11 @@ public class MainFrame extends JFrame {
                 )
         );
 
-
         welcomeLabel =
                 new JLabel(
                         "Welcome back, "
-                        + currentUser.getName()
-                        + "!"
+                                + currentUser.getName()
+                                + "!"
                 );
 
         welcomeLabel.setFont(
@@ -880,15 +649,12 @@ public class MainFrame extends JFrame {
                 )
         );
 
-        welcomeLabel.setForeground(
-                Color.WHITE
-        );
-
+        welcomeLabel.setForeground(Color.WHITE);
 
         JLabel description =
                 new JLabel(
                         "Buy, sell and discover useful items "
-                        + "from the EduMart community."
+                                + "from the EduMart community."
                 );
 
         description.setFont(
@@ -903,19 +669,13 @@ public class MainFrame extends JFrame {
                 )
         );
 
-
-        welcomeText.add(
-                welcomeLabel
-        );
+        welcomeText.add(welcomeLabel);
 
         welcomeText.add(
                 Box.createVerticalStrut(8)
         );
 
-        welcomeText.add(
-                description
-        );
-
+        welcomeText.add(description);
 
         JButton browseNow =
                 UIUtils.createButton(
@@ -929,11 +689,9 @@ public class MainFrame extends JFrame {
                 )
         );
 
-
         browseNow.addActionListener(
                 e -> openBrowseProducts("")
         );
-
 
         welcomeCard.add(
                 welcomeText,
@@ -945,44 +703,34 @@ public class MainFrame extends JFrame {
                 BorderLayout.EAST
         );
 
-
-        homePanel.add(
-                welcomeCard
-        );
-
+        homePanel.add(welcomeCard);
 
         homePanel.add(
                 Box.createVerticalStrut(25)
         );
-
 
         // ======================================
         // QUICK ACTIONS
         // ======================================
 
         JLabel quickTitle =
-                new JLabel(
-                        "Quick Actions"
-                );
+                new JLabel("Quick Actions");
 
         quickTitle.setFont(
                 UIUtils.headingFont()
         );
 
-        quickTitle.setForeground(
-                UIUtils.TEXT
+        quickTitle.setForeground(UIUtils.TEXT);
+
+        quickTitle.setAlignmentX(
+                Component.LEFT_ALIGNMENT
         );
 
-
-        homePanel.add(
-                quickTitle
-        );
-
+        homePanel.add(quickTitle);
 
         homePanel.add(
                 Box.createVerticalStrut(12)
         );
-
 
         JPanel quickPanel =
                 new JPanel(
@@ -1005,6 +753,9 @@ public class MainFrame extends JFrame {
                 )
         );
 
+        quickPanel.setAlignmentX(
+                Component.LEFT_ALIGNMENT
+        );
 
         JPanel browseCard =
                 createQuickCard(
@@ -1012,20 +763,17 @@ public class MainFrame extends JFrame {
                         "Find books, electronics, bags and more."
                 );
 
-
         JPanel sellCard =
                 createQuickCard(
                         "Sell an Item",
                         "List your unused items for other students."
                 );
 
-
         JPanel cartCard =
                 createQuickCard(
                         "My Cart",
                         "View the items you want to purchase."
                 );
-
 
         browseCard.addMouseListener(
                 new java.awt.event.MouseAdapter() {
@@ -1035,11 +783,9 @@ public class MainFrame extends JFrame {
                             java.awt.event.MouseEvent e) {
 
                         openBrowseProducts("");
-
                     }
                 }
         );
-
 
         sellCard.addMouseListener(
                 new java.awt.event.MouseAdapter() {
@@ -1051,11 +797,9 @@ public class MainFrame extends JFrame {
                         new SellProductFrame(
                                 currentUser
                         ).setVisible(true);
-
                     }
                 }
         );
-
 
         cartCard.addMouseListener(
                 new java.awt.event.MouseAdapter() {
@@ -1067,42 +811,59 @@ public class MainFrame extends JFrame {
                         new MyCartFrame(
                                 currentUser
                         ).setVisible(true);
-
                     }
                 }
         );
 
+        quickPanel.add(browseCard);
+        quickPanel.add(sellCard);
+        quickPanel.add(cartCard);
 
-        quickPanel.add(
-                browseCard
-        );
-
-        quickPanel.add(
-                sellCard
-        );
-
-        quickPanel.add(
-                cartCard
-        );
-
-
-        homePanel.add(
-                quickPanel
-        );
-
+        homePanel.add(quickPanel);
 
         homePanel.add(
                 Box.createVerticalStrut(25)
         );
 
+        // ======================================
+        // LATEST MARKETPLACE LISTINGS
+        // ======================================
 
-        // ======================================
-        // LATEST PRODUCTS
-        // ======================================
+        /*
+         * IMPORTANT FIX:
+         *
+         * Previously the title and product grid were individual
+         * BoxLayout children. Swing could calculate their preferred
+         * width instead of using the entire available content width.
+         *
+         * The complete Latest section is now placed inside a
+         * BorderLayout container which is forced to occupy the
+         * complete available width.
+         */
+
+        JPanel latestSection =
+                new JPanel(
+                        new BorderLayout()
+                );
+
+        latestSection.setBackground(
+                UIUtils.BACKGROUND
+        );
+
+        latestSection.setAlignmentX(
+                Component.LEFT_ALIGNMENT
+        );
+
+        latestSection.setMaximumSize(
+                new Dimension(
+                        Integer.MAX_VALUE,
+                        Integer.MAX_VALUE
+                )
+        );
 
         JLabel latestTitle =
                 new JLabel(
-                        "Latest Products"
+                        "Latest Marketplace Listings"
                 );
 
         latestTitle.setFont(
@@ -1113,23 +874,37 @@ public class MainFrame extends JFrame {
                 UIUtils.TEXT
         );
 
-
-        homePanel.add(
-                latestTitle
+        latestSection.add(
+                latestTitle,
+                BorderLayout.NORTH
         );
 
+        // Space below heading
+        JPanel latestContent =
+                new JPanel(
+                        new BorderLayout()
+                );
 
-        homePanel.add(
-                Box.createVerticalStrut(12)
+        latestContent.setBackground(
+                UIUtils.BACKGROUND
         );
 
+        latestContent.setBorder(
+                new EmptyBorder(
+                        12,
+                        0,
+                        0,
+                        0
+                )
+        );
 
         featuredPanel =
                 new JPanel(
-                        new FlowLayout(
-                                FlowLayout.LEFT,
+                        new GridLayout(
+                                0,
+                                4,
                                 15,
-                                5
+                                15
                         )
                 );
 
@@ -1137,14 +912,19 @@ public class MainFrame extends JFrame {
                 UIUtils.BACKGROUND
         );
 
+        featuredPanel.setOpaque(true);
 
-        loadFeaturedProducts();
-
-
-        homePanel.add(
-                featuredPanel
+        latestContent.add(
+                featuredPanel,
+                BorderLayout.CENTER
         );
 
+        latestSection.add(
+                latestContent,
+                BorderLayout.CENTER
+        );
+
+        homePanel.add(latestSection);
 
         // ======================================
         // HOME SCROLL
@@ -1161,21 +941,25 @@ public class MainFrame extends JFrame {
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
         );
 
+        scrollPane.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS
+        );
+
+        scrollPane.setWheelScrollingEnabled(true);
+
         scrollPane.getVerticalScrollBar()
                 .setUnitIncrement(16);
-
 
         contentPanel.add(
                 scrollPane,
                 BorderLayout.CENTER
         );
 
+        loadFeaturedProducts();
 
         contentPanel.revalidate();
-
         contentPanel.repaint();
     }
-
 
     // ==========================================
     // QUICK CARD
@@ -1185,8 +969,7 @@ public class MainFrame extends JFrame {
             String title,
             String description) {
 
-        JPanel card =
-                new JPanel();
+        JPanel card = new JPanel();
 
         card.setBackground(
                 UIUtils.WHITE
@@ -1213,11 +996,8 @@ public class MainFrame extends JFrame {
                 )
         );
 
-
         JLabel titleLabel =
-                new JLabel(
-                        title
-                );
+                new JLabel(title);
 
         titleLabel.setFont(
                 new Font(
@@ -1231,12 +1011,11 @@ public class MainFrame extends JFrame {
                 UIUtils.TEXT
         );
 
-
         JLabel descriptionLabel =
                 new JLabel(
                         "<html>"
-                        + description
-                        + "</html>"
+                                + description
+                                + "</html>"
                 );
 
         descriptionLabel.setFont(
@@ -1251,23 +1030,16 @@ public class MainFrame extends JFrame {
                 UIUtils.MUTED
         );
 
-
-        card.add(
-                titleLabel
-        );
+        card.add(titleLabel);
 
         card.add(
                 Box.createVerticalStrut(8)
         );
 
-        card.add(
-                descriptionLabel
-        );
-
+        card.add(descriptionLabel);
 
         return card;
     }
-
 
     // ==========================================
     // FEATURED PRODUCTS
@@ -1277,28 +1049,19 @@ public class MainFrame extends JFrame {
 
         featuredPanel.removeAll();
 
+        List<UnifiedListing> listings =
+                new UnifiedListingDAO()
+                        .getLatestListings(
+                                currentUser.getId(),
+                                8
+                        );
 
-        ProductDAO dao =
-                new ProductDAO();
-
-
-        List<Product> products =
-                dao.getAllProducts();
-
-
-        int count =
-                Math.min(
-                        products.size(),
-                        3
-                );
-
-
-        if (count == 0) {
+        if (listings.isEmpty()) {
 
             JLabel empty =
                     new JLabel(
-                            "No products listed yet. "
-                            + "Be the first to sell an item!"
+                            "No marketplace listings yet. "
+                                    + "Be the first to sell, donate or exchange!"
                     );
 
             empty.setFont(
@@ -1309,42 +1072,24 @@ public class MainFrame extends JFrame {
                     UIUtils.MUTED
             );
 
-
-            featuredPanel.add(
-                    empty
-            );
+            featuredPanel.add(empty);
 
         } else {
 
-            for (
-                    int i = 0;
-                    i < count;
-                    i++
-            ) {
-
-                Product product =
-                        products.get(i);
-
-
-                ProductCardPanel card =
-                        new ProductCardPanel(
-                                product,
-                                currentUser
-                        );
-
+            for (UnifiedListing listing : listings) {
 
                 featuredPanel.add(
-                        card
+                        new UnifiedListingCardPanel(
+                                listing,
+                                currentUser
+                        )
                 );
             }
         }
 
-
         featuredPanel.revalidate();
-
         featuredPanel.repaint();
     }
-
 
     // ==========================================
     // BROWSE PRODUCTS
@@ -1355,11 +1100,10 @@ public class MainFrame extends JFrame {
 
         BrowseProductsFrame frame;
 
-
         if (
                 searchText == null
-                ||
-                searchText.trim().isEmpty()
+                        ||
+                        searchText.trim().isEmpty()
         ) {
 
             frame =
@@ -1376,10 +1120,10 @@ public class MainFrame extends JFrame {
                     );
         }
 
-
         frame.setVisible(true);
+        frame.toFront();
+        frame.requestFocus();
     }
-
 
     // ==========================================
     // LOGOUT
@@ -1395,16 +1139,72 @@ public class MainFrame extends JFrame {
                         JOptionPane.YES_NO_OPTION
                 );
 
-
         if (
                 result ==
-                JOptionPane.YES_OPTION
+                        JOptionPane.YES_OPTION
         ) {
 
             dispose();
 
             new LoginFrame()
                     .setVisible(true);
+        }
+    }
+
+    // ==========================================
+    // VIEWPORT WIDTH PANEL
+    // ==========================================
+
+    private static class ViewportWidthPanel
+            extends JPanel
+            implements Scrollable {
+
+        ViewportWidthPanel() {
+            super();
+        }
+
+        @Override
+        public Dimension getPreferredScrollableViewportSize() {
+            return getPreferredSize();
+        }
+
+        @Override
+        public int getScrollableUnitIncrement(
+                Rectangle visibleRect,
+                int orientation,
+                int direction) {
+
+            return 16;
+        }
+
+        @Override
+        public int getScrollableBlockIncrement(
+                Rectangle visibleRect,
+                int orientation,
+                int direction) {
+
+            return orientation ==
+                    SwingConstants.VERTICAL
+
+                    ? Math.max(
+                            visibleRect.height - 40,
+                            40
+                    )
+
+                    : Math.max(
+                            visibleRect.width - 40,
+                            40
+                    );
+        }
+
+        @Override
+        public boolean getScrollableTracksViewportWidth() {
+            return true;
+        }
+
+        @Override
+        public boolean getScrollableTracksViewportHeight() {
+            return false;
         }
     }
 }

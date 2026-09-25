@@ -1,871 +1,286 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.File;
+import java.util.List;
 
+/**
+ * Full e-commerce style product details page.
+ * Keeps the existing EduMart theme and existing Cart/Favorites actions.
+ */
 public class ProductDetailsFrame extends JFrame {
 
-    private Product product;
-    private User currentUser;
+    private final Product product;
+    private final User currentUser;
+    private JPanel relatedPanel;
+    private JButton favoriteButton;
 
-    private JLabel imageLabel;
-    private JLabel sellerLabel;
-
-
-    // ==========================================
-    // CONSTRUCTOR
-    // ==========================================
-
-    public ProductDetailsFrame(
-            Product product,
-            User currentUser) {
-
+    public ProductDetailsFrame(Product product, User currentUser) {
         this.product = product;
         this.currentUser = currentUser;
 
-        setTitle(
-                "EduMart - Product Details"
-        );
-
-        setSize(
-                900,
-                650
-        );
-
-        setLocationRelativeTo(null);
-
-        setDefaultCloseOperation(
-                JFrame.DISPOSE_ON_CLOSE
-        );
-
-        setResizable(false);
+        setTitle("EduMart - " + safe(product.getName(), "Product Details"));
+        setMinimumSize(new Dimension(1000, 650));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         createUI();
+        loadRelatedProducts();
     }
-
-
-    // ==========================================
-    // CREATE UI
-    // ==========================================
 
     private void createUI() {
-
-        JPanel mainPanel =
-                new JPanel(
-                        new BorderLayout()
-                );
-
-        mainPanel.setBackground(
-                UIUtils.BACKGROUND
-        );
-
-
-        // ======================================
-        // HEADER
-        // ======================================
-
-        JPanel header =
-                new JPanel(
-                        new BorderLayout()
-                );
-
-        header.setBackground(
-                UIUtils.WHITE
-        );
-
-        header.setBorder(
-                new EmptyBorder(
-                        18,
-                        25,
-                        18,
-                        25
-                )
-        );
-
-
-        JLabel title =
-                new JLabel(
-                        "Product Details"
-                );
-
-        title.setFont(
-                UIUtils.titleFont()
-        );
-
-        title.setForeground(
-                UIUtils.TEXT
-        );
-
-
-        header.add(
-                title,
-                BorderLayout.WEST
-        );
-
-
-        mainPanel.add(
-                header,
-                BorderLayout.NORTH
-        );
-
-
-        // ======================================
-        // CONTENT
-        // ======================================
-
-        JPanel content =
-                new JPanel(
-                        new GridLayout(
-                                1,
-                                2,
-                                30,
-                                0
-                        )
-                );
-
-        content.setBackground(
-                UIUtils.BACKGROUND
-        );
-
-        content.setBorder(
-                new EmptyBorder(
-                        30,
-                        30,
-                        30,
-                        30
-                )
-        );
-
-
-        // ======================================
-        // LEFT - IMAGE
-        // ======================================
-
-        JPanel imagePanel =
-                new JPanel(
-                        new BorderLayout()
-                );
-
-        imagePanel.setBackground(
-                UIUtils.WHITE
-        );
-
-        imagePanel.setBorder(
-                BorderFactory.createLineBorder(
-                        UIUtils.BORDER
-                )
-        );
-
-
-        imageLabel =
-                new JLabel(
-                        "No Image"
-                );
-
-        imageLabel.setHorizontalAlignment(
-                SwingConstants.CENTER
-        );
-
-        imageLabel.setVerticalAlignment(
-                SwingConstants.CENTER
-        );
-
-        imageLabel.setFont(
-                new Font(
-                        "Segoe UI",
-                        Font.BOLD,
-                        16
-                )
-        );
-
-        imageLabel.setForeground(
-                UIUtils.MUTED
-        );
-
-        imageLabel.setOpaque(true);
-
-        imageLabel.setBackground(
-                new Color(
-                        239,
-                        246,
-                        255
-                )
-        );
-
-
-        loadProductImage();
-
-
-        imagePanel.add(
-                imageLabel,
-                BorderLayout.CENTER
-        );
-
-
-        content.add(
-                imagePanel
-        );
-
-
-        // ======================================
-        // RIGHT - INFORMATION
-        // ======================================
-
-        JPanel infoPanel =
-                new JPanel();
-
-        infoPanel.setBackground(
-                UIUtils.WHITE
-        );
-
-        infoPanel.setLayout(
-                new BoxLayout(
-                        infoPanel,
-                        BoxLayout.Y_AXIS
-                )
-        );
-
-        infoPanel.setBorder(
-                new EmptyBorder(
-                        25,
-                        25,
-                        25,
-                        25
-                )
-        );
-
-
-        JLabel nameLabel =
-                new JLabel(
-                        product.getName()
-                );
-
-        nameLabel.setFont(
-                new Font(
-                        "Segoe UI",
-                        Font.BOLD,
-                        27
-                )
-        );
-
-        nameLabel.setForeground(
-                UIUtils.TEXT
-        );
-
-
-        infoPanel.add(
-                nameLabel
-        );
-
-
-        infoPanel.add(
-                Box.createVerticalStrut(8)
-        );
-
-
-        // ======================================
-        // PRICE
-        // ======================================
-
-        JLabel priceLabel =
-                new JLabel(
-                        "₹"
-                        + String.format(
-                                "%.2f",
-                                product.getPrice()
-                        )
-                );
-
-        priceLabel.setFont(
-                new Font(
-                        "Segoe UI",
-                        Font.BOLD,
-                        25
-                )
-        );
-
-        priceLabel.setForeground(
-                UIUtils.PRIMARY
-        );
-
-
-        infoPanel.add(
-                priceLabel
-        );
-
-
-        infoPanel.add(
-                Box.createVerticalStrut(15)
-        );
-
-
-        // ======================================
-        // CATEGORY
-        // ======================================
-
-        JLabel categoryLabel =
-                createInfoLabel(
-                        "Category",
-                        product.getCategory()
-                );
-
-
-        infoPanel.add(
-                categoryLabel
-        );
-
-
-        infoPanel.add(
-                Box.createVerticalStrut(8)
-        );
-
-
-        // ======================================
-        // CONDITION
-        // ======================================
-
-        String condition =
-                product.getConditionType();
-
-
-        if (
-                condition == null
-                ||
-                condition.trim().isEmpty()
-        ) {
-
-            condition = "Not specified";
-        }
-
-
-        JLabel conditionLabel =
-                createInfoLabel(
-                        "Condition",
-                        condition
-                );
-
-
-        infoPanel.add(
-                conditionLabel
-        );
-
-
-        infoPanel.add(
-                Box.createVerticalStrut(8)
-        );
-
-
-        // ======================================
-        // SELLER
-        // ======================================
-
-        sellerLabel =
-                createInfoLabel(
-                        "Seller",
-                        "Loading..."
-                );
-
-
-        infoPanel.add(
-                sellerLabel
-        );
-
-
-        loadSellerName();
-
-
-        infoPanel.add(
-                Box.createVerticalStrut(18)
-        );
-
-
-        // ======================================
-        // DESCRIPTION TITLE
-        // ======================================
-
-        JLabel descriptionTitle =
-                new JLabel(
-                        "Description"
-                );
-
-
-        descriptionTitle.setFont(
-                new Font(
-                        "Segoe UI",
-                        Font.BOLD,
-                        15
-                )
-        );
-
-
-        descriptionTitle.setForeground(
-                UIUtils.TEXT
-        );
-
-
-        infoPanel.add(
-                descriptionTitle
-        );
-
-
-        infoPanel.add(
-                Box.createVerticalStrut(6)
-        );
-
-
-        // ======================================
-        // DESCRIPTION
-        // ======================================
-
-        String description =
-                product.getDescription();
-
-
-        if (
-                description == null
-                ||
-                description.trim().isEmpty()
-        ) {
-
-            description =
-                    "No description provided.";
-        }
-
-
-        JLabel descriptionLabel =
-                new JLabel(
-                        "<html>"
-                        + description
-                        + "</html>"
-                );
-
-
-        descriptionLabel.setFont(
-                UIUtils.normalFont()
-        );
-
-
-        descriptionLabel.setForeground(
-                UIUtils.MUTED
-        );
-
-
-        infoPanel.add(
-                descriptionLabel
-        );
-
-
-        infoPanel.add(
-                Box.createVerticalGlue()
-        );
-
-
-        // ======================================
-        // BUTTONS
-        // ======================================
-
-        JPanel buttonPanel =
-                new JPanel(
-                        new GridLayout(
-                                1,
-                                2,
-                                10,
-                                0
-                        )
-                );
-
-
-        buttonPanel.setBackground(
-                UIUtils.WHITE
-        );
-
-
-        JButton cartButton =
-                UIUtils.createButton(
-                        "Add to Cart"
-                );
-
-
-        JButton favoriteButton =
-                new JButton(
-                        "♡ Favorite"
-                );
-
-
-        favoriteButton.setFont(
-                UIUtils.buttonFont()
-        );
-
-        favoriteButton.setFocusPainted(
-                false
-        );
-
-
-        cartButton.addActionListener(
-                e -> addToCart()
-        );
-
-
-        favoriteButton.addActionListener(
-                e -> toggleFavorite(
-                        favoriteButton
-                )
-        );
-
-
-        updateFavoriteButton(
-                favoriteButton
-        );
-
-
-        buttonPanel.add(
-                cartButton
-        );
-
-
-        buttonPanel.add(
-                favoriteButton
-        );
-
-
-        infoPanel.add(
-                buttonPanel
-        );
-
-
-        content.add(
-                infoPanel
-        );
-
-
-        mainPanel.add(
-                content,
-                BorderLayout.CENTER
-        );
-
-
-        setContentPane(
-                mainPanel
-        );
+        JPanel root = new JPanel(new BorderLayout());
+        root.setBackground(UIUtils.BACKGROUND);
+
+        JPanel header = new JPanel(new BorderLayout());
+        header.setBackground(UIUtils.WHITE);
+        header.setBorder(new EmptyBorder(15, 25, 15, 25));
+
+        JButton back = UIUtils.createOutlineButton("← Back");
+        back.setPreferredSize(new Dimension(100, 40));
+        back.addActionListener(e -> dispose());
+
+        JLabel title = new JLabel("Product Details");
+        title.setFont(UIUtils.titleFont());
+        title.setForeground(UIUtils.TEXT);
+
+        header.add(back, BorderLayout.WEST);
+        header.add(title, BorderLayout.CENTER);
+        root.add(header, BorderLayout.NORTH);
+
+        JPanel page = new JPanel();
+        page.setBackground(UIUtils.BACKGROUND);
+        page.setBorder(new EmptyBorder(25, 30, 35, 30));
+        page.setLayout(new BoxLayout(page, BoxLayout.Y_AXIS));
+
+        page.add(createProductDetailsCard());
+        page.add(Box.createVerticalStrut(30));
+
+        JLabel relatedTitle = new JLabel("Related Products");
+        relatedTitle.setFont(UIUtils.headingFont());
+        relatedTitle.setForeground(UIUtils.TEXT);
+        relatedTitle.setAlignmentX(Component.LEFT_ALIGNMENT);
+        page.add(relatedTitle);
+        page.add(Box.createVerticalStrut(12));
+
+        relatedPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 5));
+        relatedPanel.setBackground(UIUtils.BACKGROUND);
+        relatedPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        page.add(relatedPanel);
+
+        JScrollPane scroll = new JScrollPane(page);
+        scroll.setBorder(null);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.getVerticalScrollBar().setUnitIncrement(18);
+        root.add(scroll, BorderLayout.CENTER);
+
+        setContentPane(root);
     }
 
+    private JPanel createProductDetailsCard() {
+        JPanel card = new JPanel(new BorderLayout(30, 0));
+        card.setBackground(UIUtils.WHITE);
+        card.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(UIUtils.BORDER),
+                new EmptyBorder(25, 25, 25, 25)
+        ));
+        card.setAlignmentX(Component.LEFT_ALIGNMENT);
+        card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 560));
 
-    // ==========================================
-    // INFO LABEL
-    // ==========================================
+        JLabel image = createLargeImage(product.getImagePath());
+        JPanel imagePanel = new JPanel(new BorderLayout());
+        imagePanel.setBackground(UIUtils.WHITE);
+        imagePanel.setPreferredSize(new Dimension(430, 360));
+        imagePanel.add(image, BorderLayout.CENTER);
+        card.add(imagePanel, BorderLayout.WEST);
 
-    private JLabel createInfoLabel(
-            String title,
-            String value) {
+        JPanel info = new JPanel();
+        info.setBackground(UIUtils.WHITE);
+        info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
 
-        JLabel label =
-                new JLabel(
-                        "<html><b>"
-                        + title
-                        + ":</b> "
-                        + value
-                        + "</html>"
-                );
-
-
-        label.setFont(
-                UIUtils.normalFont()
+        JLabel category = new JLabel(
+                safe(product.getCategory(), "Other") +
+                "  •  " + safe(product.getConditionType(), "Condition not specified")
         );
+        category.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        category.setForeground(UIUtils.MUTED);
 
+        JLabel name = new JLabel(safe(product.getName(), "Unnamed Product"));
+        name.setFont(new Font("Segoe UI", Font.BOLD, 30));
+        name.setForeground(UIUtils.TEXT);
 
-        label.setForeground(
-                UIUtils.TEXT
-        );
+        JLabel price = new JLabel("₹" + String.format("%.2f", product.getPrice()));
+        price.setFont(new Font("Segoe UI", Font.BOLD, 27));
+        price.setForeground(UIUtils.PRIMARY);
 
+        JLabel seller = new JLabel("Seller ID: " + product.getSellerId());
+        seller.setFont(UIUtils.normalFont());
+        seller.setForeground(UIUtils.MUTED);
 
+        JLabel descTitle = new JLabel("Description");
+        descTitle.setFont(UIUtils.headingFont());
+        descTitle.setForeground(UIUtils.TEXT);
+
+        JTextArea description = new JTextArea(safe(product.getDescription(), "No description available."));
+        description.setFont(UIUtils.normalFont());
+        description.setForeground(UIUtils.TEXT);
+        description.setBackground(UIUtils.WHITE);
+        description.setLineWrap(true);
+        description.setWrapStyleWord(true);
+        description.setEditable(false);
+        description.setBorder(null);
+        description.setRows(5);
+
+        info.add(category);
+        info.add(Box.createVerticalStrut(10));
+        info.add(name);
+        info.add(Box.createVerticalStrut(12));
+        info.add(price);
+        info.add(Box.createVerticalStrut(8));
+        info.add(seller);
+        info.add(Box.createVerticalStrut(22));
+        info.add(descTitle);
+        info.add(Box.createVerticalStrut(8));
+        info.add(description);
+        info.add(Box.createVerticalStrut(20));
+
+        JPanel actions = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
+        actions.setBackground(UIUtils.WHITE);
+
+        if (currentUser != null && product.getSellerId() != currentUser.getId()) {
+            JButton cart = UIUtils.createButton("Add to Cart");
+            cart.setPreferredSize(new Dimension(145, 42));
+            cart.addActionListener(e -> addToCart());
+            actions.add(cart);
+
+            favoriteButton = UIUtils.createOutlineButton("♡ Add to Favorites");
+            favoriteButton.setPreferredSize(new Dimension(175, 42));
+            favoriteButton.addActionListener(e -> toggleFavorite());
+            actions.add(favoriteButton);
+            updateFavoriteButton();
+        } else if (currentUser != null) {
+            JLabel own = new JLabel("This is your product");
+            own.setFont(UIUtils.buttonFont());
+            own.setForeground(UIUtils.MUTED);
+            actions.add(own);
+        }
+
+        info.add(actions);
+        card.add(info, BorderLayout.CENTER);
+
+        return card;
+    }
+
+    private JLabel createLargeImage(String path) {
+        JLabel label = new JLabel("No Image Available", SwingConstants.CENTER);
+        label.setOpaque(true);
+        label.setBackground(new Color(243, 246, 250));
+        label.setForeground(UIUtils.MUTED);
+        label.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        label.setPreferredSize(new Dimension(430, 350));
+
+        if (path != null && !path.trim().isEmpty()) {
+            File file = new File(path);
+            if (file.exists()) {
+                ImageIcon icon = new ImageIcon(path);
+                if (icon.getIconWidth() > 0) {
+                    Image scaled = scaleToFit(icon.getImage(), 420, 340);
+                    label.setText("");
+                    label.setIcon(new ImageIcon(scaled));
+                }
+            }
+        }
         return label;
     }
 
+    private Image scaleToFit(Image image, int maxWidth, int maxHeight) {
+        int width = image.getWidth(null);
+        int height = image.getHeight(null);
+        if (width <= 0 || height <= 0) return image;
 
-    // ==========================================
-    // LOAD IMAGE
-    // ==========================================
+        double scale = Math.min((double) maxWidth / width, (double) maxHeight / height);
+        int newWidth = Math.max(1, (int) (width * scale));
+        int newHeight = Math.max(1, (int) (height * scale));
+        return image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+    }
 
-    private void loadProductImage() {
+    private void loadRelatedProducts() {
+        relatedPanel.removeAll();
 
-        String path =
-                product.getImagePath();
+        List<Product> products = new ProductDAO().getRelatedProducts(
+                product.getId(),
+                product.getCategory(),
+                4
+        );
 
+        if (products.isEmpty()) {
+            JLabel empty = new JLabel("No related products available yet.");
+            empty.setFont(UIUtils.normalFont());
+            empty.setForeground(UIUtils.MUTED);
+            relatedPanel.add(empty);
+        } else {
+            for (Product related : products) {
+                relatedPanel.add(new ProductCardPanel(related, currentUser));
+            }
+        }
 
-        if (
-                path == null
-                ||
-                path.trim().isEmpty()
-        ) {
+        relatedPanel.revalidate();
+        relatedPanel.repaint();
+    }
 
+    private void addToCart() {
+        if (currentUser == null) {
+            JOptionPane.showMessageDialog(this, "Please login first.", "EduMart", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-
-        ImageIcon icon =
-                new ImageIcon(path);
-
-
-        if (
-                icon.getIconWidth() <= 0
-        ) {
-
+        if (product.getSellerId() == currentUser.getId()) {
+            JOptionPane.showMessageDialog(this, "You cannot add your own product to cart.", "EduMart", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
-
-        Image image =
-                icon.getImage();
-
-
-        Image scaled =
-                image.getScaledInstance(
-                        380,
-                        420,
-                        Image.SCALE_SMOOTH
-                );
-
-
-        imageLabel.setText("");
-
-        imageLabel.setIcon(
-                new ImageIcon(
-                        scaled
-                )
+        boolean success = new CartDAO().addToCart(currentUser.getId(), product.getId());
+        JOptionPane.showMessageDialog(
+                this,
+                success ? product.getName() + " added to cart." : "Unable to add product to cart.",
+                "EduMart",
+                success ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE
         );
     }
 
-
-    // ==========================================
-    // LOAD SELLER NAME
-    // ==========================================
-
-    private void loadSellerName() {
-
-        String query =
-                "SELECT name FROM users WHERE id = ?";
-
-
-        try (Connection con =
-                    DBConnection.getConnection()) {
-
-            if (con == null) {
-
-                sellerLabel.setText(
-                        "<html><b>Seller:</b> Unknown</html>"
-                );
-
-                return;
-            }
-
-
-            try (PreparedStatement ps =
-                        con.prepareStatement(query)) {
-
-                ps.setInt(
-                        1,
-                        product.getSellerId()
-                );
-
-
-                try (ResultSet rs =
-                            ps.executeQuery()) {
-
-                    if (rs.next()) {
-
-                        String sellerName =
-                                rs.getString("name");
-
-
-                        if (
-                                sellerName == null
-                                ||
-                                sellerName.trim().isEmpty()
-                        ) {
-
-                            sellerName = "Unknown";
-                        }
-
-
-                        sellerLabel.setText(
-                                "<html><b>Seller:</b> "
-                                + sellerName
-                                + "</html>"
-                        );
-
-                    } else {
-
-                        sellerLabel.setText(
-                                "<html><b>Seller:</b> Unknown</html>"
-                        );
-                    }
-                }
-            }
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-            sellerLabel.setText(
-                    "<html><b>Seller:</b> Unknown</html>"
-            );
-        }
-    }
-
-
-    // ==========================================
-    // ADD TO CART
-    // ==========================================
-
-    private void addToCart() {
-
-        if (currentUser == null) {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Please login first.",
-                    "EduMart",
-                    JOptionPane.WARNING_MESSAGE
-            );
-
-            return;
-        }
-
-
-        if (
-                product.getSellerId()
-                ==
-                currentUser.getId()
-        ) {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "You cannot add your own product to cart.",
-                    "EduMart",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-
-            return;
-        }
-
-
-        CartDAO dao =
-                new CartDAO();
-
-
-        boolean success =
-                dao.addToCart(
-                        currentUser.getId(),
-                        product.getId()
-                );
-
-
-        if (success) {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Product added to cart.",
-                    "EduMart",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-
-        } else {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Unable to add product to cart.",
-                    "EduMart",
-                    JOptionPane.ERROR_MESSAGE
-            );
-        }
-    }
-
-
-    // ==========================================
-    // UPDATE FAVORITE BUTTON
-    // ==========================================
-
-    private void updateFavoriteButton(
-            JButton button) {
-
-        if (currentUser == null) {
-            return;
-        }
-
-
-        FavoriteDAO dao =
-                new FavoriteDAO();
-
-
-        if (
-                dao.isFavorite(
-                        currentUser.getId(),
-                        product.getId()
-                )
-        ) {
-
-            button.setText(
-                    "♥ Remove Favorite"
-            );
-
-            button.setForeground(
-                    new Color(
-                            220,
-                            38,
-                            38
-                    )
-            );
-
-        } else {
-
-            button.setText(
-                    "♡ Add to Favorites"
-            );
-
-            button.setForeground(
-                    UIUtils.TEXT
-            );
-        }
-    }
-
-
-    // ==========================================
-    // TOGGLE FAVORITE
-    // ==========================================
-
-    private void toggleFavorite(
-            JButton button) {
-
-        FavoriteDAO dao =
-                new FavoriteDAO();
-
-
-        boolean favorite =
-                dao.isFavorite(
-                        currentUser.getId(),
-                        product.getId()
-                );
-
+    private void updateFavoriteButton() {
+        if (favoriteButton == null || currentUser == null) return;
+
+        boolean favorite = new FavoriteDAO().isFavorite(
+                currentUser.getId(), product.getId()
+        );
 
         if (favorite) {
-
-            dao.removeFavorite(
-                    currentUser.getId(),
-                    product.getId()
-            );
-
+            favoriteButton.setText("♥ Remove from Favorites");
+            favoriteButton.setForeground(UIUtils.DANGER);
         } else {
+            favoriteButton.setText("♡ Add to Favorites");
+            favoriteButton.setForeground(UIUtils.PRIMARY);
+        }
+    }
 
-            dao.addFavorite(
-                    currentUser.getId(),
-                    product.getId()
-            );
+    private void toggleFavorite() {
+        if (currentUser == null) {
+            JOptionPane.showMessageDialog(this, "Please login first.", "EduMart", JOptionPane.WARNING_MESSAGE);
+            return;
         }
 
+        FavoriteDAO dao = new FavoriteDAO();
+        if (dao.isFavorite(currentUser.getId(), product.getId())) {
+            dao.removeFavorite(currentUser.getId(), product.getId());
+        } else {
+            dao.addFavorite(currentUser.getId(), product.getId());
+        }
+        updateFavoriteButton();
+    }
 
-        updateFavoriteButton(button);
+    private String safe(String value, String fallback) {
+        return value == null || value.trim().isEmpty() ? fallback : value;
     }
 }

@@ -23,14 +23,10 @@ public class ExchangeRequestsFrame extends JFrame {
                 "EduMart - Exchange Requests"
         );
 
-        setSize(
-                950,
-                650
-        );
+        setMinimumSize(new Dimension(1000, 650));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        setLocationRelativeTo(null);
-
-        setDefaultCloseOperation(
+                setDefaultCloseOperation(
                 JFrame.DISPOSE_ON_CLOSE
         );
 

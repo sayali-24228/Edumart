@@ -56,6 +56,16 @@ public class ProductCardPanel extends JPanel {
                 )
         );
 
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    openDetails();
+                }
+            }
+        });
+
 
         createUI();
     }
@@ -150,6 +160,16 @@ public class ProductCardPanel extends JPanel {
                 imageLabel
         );
 
+        imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        imageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    openDetails();
+                }
+            }
+        });
+
 
         content.add(
                 imageLabel
@@ -198,6 +218,16 @@ public class ProductCardPanel extends JPanel {
         nameLabel.setForeground(
                 UIUtils.TEXT
         );
+
+        nameLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        nameLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    openDetails();
+                }
+            }
+        });
 
 
         content.add(
