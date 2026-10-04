@@ -28,10 +28,7 @@ public class LoginFrame extends JFrame {
         JPanel main =
                 new JPanel(new GridLayout(1, 2));
 
-        // =========================
         // LEFT PANEL
-        // =========================
-
         JPanel left =
                 new JPanel();
 
@@ -112,10 +109,7 @@ public class LoginFrame extends JFrame {
         left.add(Box.createVerticalStrut(15));
         left.add(tagline);
 
-        // =========================
         // RIGHT PANEL
-        // =========================
-
         JPanel right =
                 new JPanel();
 
@@ -258,7 +252,6 @@ public class LoginFrame extends JFrame {
         );
 
         // Add components
-
         card.add(title);
 
         card.add(
@@ -310,10 +303,7 @@ public class LoginFrame extends JFrame {
 
         add(main);
 
-        // =========================
         // ACTIONS
-        // =========================
-
         loginButton.addActionListener(
                 e -> login()
         );

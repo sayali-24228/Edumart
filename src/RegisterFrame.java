@@ -30,10 +30,7 @@ public class RegisterFrame extends JFrame {
         JPanel main =
                 new JPanel(new GridLayout(1, 2));
 
-        // =========================
         // LEFT
-        // =========================
-
         JPanel left =
                 new JPanel();
 
@@ -118,10 +115,7 @@ public class RegisterFrame extends JFrame {
         );
         left.add(text);
 
-        // =========================
         // RIGHT
-        // =========================
-
         JPanel right =
                 new JPanel(
                         new GridBagLayout()

@@ -4,10 +4,6 @@ import java.awt.*;
 import java.io.File;
 import java.util.List;
 
-/**
- * Full e-commerce style product details page.
- * Keeps the existing EduMart theme and Cart functionality.
- */
 public class ProductDetailsFrame extends JFrame {
 
     private final Product product;
@@ -53,10 +49,7 @@ public class ProductDetailsFrame extends JFrame {
         loadRelatedProducts();
     }
 
-    // ==========================================
     // CREATE UI
-    // ==========================================
-
     private void createUI() {
 
         JPanel root =
@@ -68,10 +61,7 @@ public class ProductDetailsFrame extends JFrame {
                 UIUtils.BACKGROUND
         );
 
-        // ======================================
         // HEADER
-        // ======================================
-
         JPanel header =
                 new JPanel(
                         new BorderLayout()
@@ -134,10 +124,7 @@ public class ProductDetailsFrame extends JFrame {
                 BorderLayout.NORTH
         );
 
-        // ======================================
         // PAGE
-        // ======================================
-
         JPanel page =
                 new JPanel();
 
@@ -171,10 +158,7 @@ public class ProductDetailsFrame extends JFrame {
                 )
         );
 
-        // ======================================
         // RELATED PRODUCTS
-        // ======================================
-
         JLabel relatedTitle =
                 new JLabel(
                         "Related Products"
@@ -223,10 +207,7 @@ public class ProductDetailsFrame extends JFrame {
                 relatedPanel
         );
 
-        // ======================================
         // SCROLL
-        // ======================================
-
         JScrollPane scroll =
                 new JScrollPane(
                         page
@@ -259,10 +240,7 @@ public class ProductDetailsFrame extends JFrame {
         );
     }
 
-    // ==========================================
     // PRODUCT DETAILS CARD
-    // ==========================================
-
     private JPanel createProductDetailsCard() {
 
         JPanel card =
@@ -302,10 +280,7 @@ public class ProductDetailsFrame extends JFrame {
                 )
         );
 
-        // ======================================
         // IMAGE
-        // ======================================
-
         JLabel image =
                 createLargeImage(
                         product.getImagePath()
@@ -337,10 +312,7 @@ public class ProductDetailsFrame extends JFrame {
                 BorderLayout.WEST
         );
 
-        // ======================================
         // INFORMATION
-        // ======================================
-
         JPanel info =
                 new JPanel();
 
@@ -548,10 +520,7 @@ public class ProductDetailsFrame extends JFrame {
                 )
         );
 
-        // ======================================
         // ACTIONS
-        // ======================================
-
         JPanel actions =
                 new JPanel(
                         new FlowLayout(
@@ -627,10 +596,7 @@ public class ProductDetailsFrame extends JFrame {
         return card;
     }
 
-    // ==========================================
     // LARGE IMAGE
-    // ==========================================
-
     private JLabel createLargeImage(
             String path) {
 
@@ -716,10 +682,7 @@ public class ProductDetailsFrame extends JFrame {
         return label;
     }
 
-    // ==========================================
     // SCALE IMAGE
-    // ==========================================
-
     private Image scaleToFit(
             Image image,
             int maxWidth,
@@ -773,10 +736,7 @@ public class ProductDetailsFrame extends JFrame {
         );
     }
 
-    // ==========================================
     // RELATED PRODUCTS
-    // ==========================================
-
     private void loadRelatedProducts() {
 
         relatedPanel.removeAll();
@@ -831,10 +791,7 @@ public class ProductDetailsFrame extends JFrame {
         relatedPanel.repaint();
     }
 
-    // ==========================================
     // ADD TO CART
-    // ==========================================
-
     private void addToCart() {
 
         if (
@@ -891,10 +848,7 @@ public class ProductDetailsFrame extends JFrame {
         );
     }
 
-    // ==========================================
     // SAFE TEXT
-    // ==========================================
-
     private String safe(
             String value,
             String fallback) {

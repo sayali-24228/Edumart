@@ -5,10 +5,6 @@ import javax.swing.*;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.EmptyBorder;
 
-/**
- * Central visual design system for EduMart.
- * All frames use this class so the application keeps one consistent look.
- */
 public final class UIUtils {
 
     private UIUtils() { }
@@ -45,7 +41,6 @@ public final class UIUtils {
         return new Font("Segoe UI", Font.BOLD, 14);
     }
 
-    /** Apply modern Swing defaults after the Look & Feel has been selected. */
     public static void installModernDefaults() {
         UIManager.put("Button.font", buttonFont());
         UIManager.put("Label.font", normalFont());
@@ -109,12 +104,10 @@ public final class UIUtils {
         return label;
     }
 
-    /** Rounded border for cards and panels. */
     public static javax.swing.border.Border roundedBorder() {
         return new RoundedLineBorder(BORDER, RADIUS, 1);
     }
 
-    /** Card border with a subtle outline and padding. */
     public static javax.swing.border.Border cardBorder(int padding) {
         return javax.swing.BorderFactory.createCompoundBorder(
                 roundedBorder(),
@@ -122,7 +115,6 @@ public final class UIUtils {
         );
     }
 
-    /** A small secondary/outline button. */
     public static JButton createOutlineButton(String text) {
         RoundedButton button = new RoundedButton(text, WHITE, PRIMARY);
         button.setBorder(new RoundedLineBorder(PRIMARY, 12, 1));
