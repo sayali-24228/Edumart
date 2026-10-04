@@ -7,10 +7,8 @@ import java.util.List;
 
 public class ProductDAO {
 
-    // ==========================================
     // ADD PRODUCT
-    // ==========================================
-
+    
     public boolean addProduct(Product product) {
 
         String query =
@@ -76,12 +74,9 @@ public class ProductDAO {
             return false;
         }
     }
-
-
-    // ==========================================
+    
     // GET ALL PRODUCTS
-    // ==========================================
-
+    
     public List<Product> getAllProducts() {
 
         String query =
@@ -90,12 +85,6 @@ public class ProductDAO {
 
         return executeQueryWithoutUser(query);
     }
-
-
-    // ==========================================
-    // GET ALL PRODUCTS
-    // EXCEPT CURRENT USER'S PRODUCTS
-    // ==========================================
 
     public List<Product> getAllProducts(
             int currentUserId) {
@@ -111,11 +100,8 @@ public class ProductDAO {
         );
     }
 
-
-    // ==========================================
     // SEARCH + CATEGORY + SORT
-    // ==========================================
-
+    
     public List<Product> searchProducts(
             int currentUserId,
             String searchText,
@@ -127,12 +113,9 @@ public class ProductDAO {
                         "SELECT * FROM products " +
                         "WHERE seller_id != ? "
                 );
-
-
-        // ======================================
+        
         // SEARCH
-        // ======================================
-
+        
         if (
                 searchText != null &&
                 !searchText.trim().isEmpty()
@@ -147,11 +130,8 @@ public class ProductDAO {
             );
         }
 
-
-        // ======================================
         // CATEGORY
-        // ======================================
-
+        
         if (
                 category != null &&
                 !category.equals("All Categories")
@@ -162,11 +142,8 @@ public class ProductDAO {
             );
         }
 
-
-        // ======================================
         // SORT
-        // ======================================
-
+        
         if (
                 sortOption == null ||
                 sortOption.equals("Newest")
@@ -237,14 +214,12 @@ public class ProductDAO {
 
                 int index = 1;
 
-
                 // CURRENT USER
 
                 ps.setInt(
                         index++,
                         currentUserId
                 );
-
 
                 // SEARCH PARAMETERS
 
@@ -274,7 +249,6 @@ public class ProductDAO {
                             search
                     );
                 }
-
 
                 // CATEGORY
 
@@ -316,11 +290,8 @@ public class ProductDAO {
 
         return products;
     }
-
-
-    // ==========================================
-    // EXECUTE QUERY WITH USER ID
-    // ==========================================
+    
+    // EXECUTE QUERY WITH USER ID    
 
     private List<Product> executeProductQuery(
             String query,
@@ -377,11 +348,8 @@ public class ProductDAO {
 
         return products;
     }
-
-
-    // ==========================================
+    
     // EXECUTE QUERY WITHOUT USER ID
-    // ==========================================
 
     private List<Product> executeQueryWithoutUser(
             String query) {
@@ -428,12 +396,9 @@ public class ProductDAO {
 
         return products;
     }
-
-
-    // ==========================================
+    
     // RESULT SET → PRODUCT OBJECT
-    // ==========================================
-
+    
     private Product createProductFromResultSet(
             ResultSet rs)
             throws SQLException {
@@ -484,10 +449,9 @@ public class ProductDAO {
 
         return product;
     }
-        // ==========================================
+        
     // GET RELATED PRODUCTS
-    // ==========================================
-
+ 
     public List<Product> getRelatedProducts(
             int productId,
             String category,
@@ -551,12 +515,9 @@ public class ProductDAO {
 
         return products;
     }
-
-
-    // ==========================================
+    
         // GET PRODUCTS OF A SELLER
-        // ==========================================
-
+        
         public List<Product> getProductsBySeller(
                 int sellerId) {
 
@@ -615,12 +576,9 @@ public class ProductDAO {
 
         return products;
         }
-
-
-        // ==========================================
+        
         // DELETE PRODUCT
-        // ==========================================
-
+        
         public boolean deleteProduct(
                 int productId,
                 int sellerId) {
@@ -668,12 +626,9 @@ public class ProductDAO {
                 return false;
         }
         }
-
-
-        // ==========================================
+        
         // COUNT SELLER PRODUCTS
-        // ==========================================
-
+        
         public int getSellerProductCount(
                 int sellerId) {
 
@@ -725,11 +680,8 @@ public class ProductDAO {
         return 0;
         }
 
-
-        // ==========================================
         // COUNT SELLER ORDERS
-        // ==========================================
-
+        
         public int getSellerOrderCount(
                 int sellerId) {
 

@@ -1,13 +1,9 @@
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.File;
 import java.util.List;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
-/**
- * Full e-commerce style product details page.
- * Keeps the existing EduMart theme and Cart functionality.
- */
 public class ProductDetailsFrame extends JFrame {
 
     private final Product product;
@@ -53,9 +49,7 @@ public class ProductDetailsFrame extends JFrame {
         loadRelatedProducts();
     }
 
-    // ==========================================
-    // CREATE UI
-    // ==========================================
+    // CREATE UI    
 
     private void createUI() {
 
@@ -68,9 +62,7 @@ public class ProductDetailsFrame extends JFrame {
                 UIUtils.BACKGROUND
         );
 
-        // ======================================
         // HEADER
-        // ======================================
 
         JPanel header =
                 new JPanel(
@@ -134,9 +126,7 @@ public class ProductDetailsFrame extends JFrame {
                 BorderLayout.NORTH
         );
 
-        // ======================================
         // PAGE
-        // ======================================
 
         JPanel page =
                 new JPanel();
@@ -171,9 +161,7 @@ public class ProductDetailsFrame extends JFrame {
                 )
         );
 
-        // ======================================
         // RELATED PRODUCTS
-        // ======================================
 
         JLabel relatedTitle =
                 new JLabel(
@@ -223,9 +211,7 @@ public class ProductDetailsFrame extends JFrame {
                 relatedPanel
         );
 
-        // ======================================
         // SCROLL
-        // ======================================
 
         JScrollPane scroll =
                 new JScrollPane(
@@ -258,10 +244,8 @@ public class ProductDetailsFrame extends JFrame {
                 root
         );
     }
-
-    // ==========================================
-    // PRODUCT DETAILS CARD
-    // ==========================================
+    
+    // PRODUCT DETAILS CARD    
 
     private JPanel createProductDetailsCard() {
 
@@ -302,9 +286,7 @@ public class ProductDetailsFrame extends JFrame {
                 )
         );
 
-        // ======================================
         // IMAGE
-        // ======================================
 
         JLabel image =
                 createLargeImage(
@@ -337,9 +319,7 @@ public class ProductDetailsFrame extends JFrame {
                 BorderLayout.WEST
         );
 
-        // ======================================
         // INFORMATION
-        // ======================================
 
         JPanel info =
                 new JPanel();
@@ -548,9 +528,7 @@ public class ProductDetailsFrame extends JFrame {
                 )
         );
 
-        // ======================================
         // ACTIONS
-        // ======================================
 
         JPanel actions =
                 new JPanel(
@@ -626,10 +604,8 @@ public class ProductDetailsFrame extends JFrame {
 
         return card;
     }
-
-    // ==========================================
+    
     // LARGE IMAGE
-    // ==========================================
 
     private JLabel createLargeImage(
             String path) {
@@ -715,11 +691,9 @@ public class ProductDetailsFrame extends JFrame {
 
         return label;
     }
-
-    // ==========================================
+    
     // SCALE IMAGE
-    // ==========================================
-
+    
     private Image scaleToFit(
             Image image,
             int maxWidth,
@@ -772,10 +746,8 @@ public class ProductDetailsFrame extends JFrame {
                 Image.SCALE_SMOOTH
         );
     }
-
-    // ==========================================
+    
     // RELATED PRODUCTS
-    // ==========================================
 
     private void loadRelatedProducts() {
 
@@ -831,10 +803,8 @@ public class ProductDetailsFrame extends JFrame {
         relatedPanel.repaint();
     }
 
-    // ==========================================
     // ADD TO CART
-    // ==========================================
-
+    
     private void addToCart() {
 
         if (
@@ -890,10 +860,8 @@ public class ProductDetailsFrame extends JFrame {
                 JOptionPane.ERROR_MESSAGE
         );
     }
-
-    // ==========================================
-    // SAFE TEXT
-    // ==========================================
+    
+    // SAFE TEXT    
 
     private String safe(
             String value,

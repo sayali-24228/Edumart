@@ -88,9 +88,6 @@ public class UnifiedListingDAO {
         ) {
             int index = 1;
 
-            // currentUserId is retained in the method signature so the
-            // same DAO can be used by Home and Browse. All listings are
-            // intentionally shown; action buttons protect own listings.
 
             if (searchText != null && !searchText.trim().isEmpty()) {
                 String search = "%" + searchText.trim() + "%";
