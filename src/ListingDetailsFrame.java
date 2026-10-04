@@ -1,10 +1,9 @@
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.File;
 import java.util.List;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
-/** Full e-commerce-style details page for SELL, DONATE and EXCHANGE listings. */
 public class ListingDetailsFrame extends JFrame {
 
     private final UnifiedListing listing;
@@ -292,8 +291,6 @@ public class ListingDetailsFrame extends JFrame {
         return value == null || value.trim().isEmpty() ? fallback : value;
     }
 
-    /** Keeps the details page and related-products grid inside the visible
-     * window while allowing the page to grow vertically. */
     private static class ViewportWidthPanel extends JPanel implements Scrollable {
 
         ViewportWidthPanel() {

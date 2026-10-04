@@ -12,10 +12,7 @@ public class MainFrame extends JFrame {
     private JLabel welcomeLabel;
     private JPanel featuredPanel;
 
-    // ==========================================
     // CONSTRUCTOR
-    // ==========================================
-
     public MainFrame(User user) {
 
         currentUser = user;
@@ -32,27 +29,18 @@ public class MainFrame extends JFrame {
         showHome();
     }
 
-    // ==========================================
     // CREATE UI
-    // ==========================================
-
     private void createUI() {
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(UIUtils.BACKGROUND);
 
-        // ======================================
         // SIDEBAR
-        // ======================================
-
         JPanel sidebar = new JPanel(new BorderLayout());
         sidebar.setPreferredSize(new Dimension(220, 750));
         sidebar.setBackground(UIUtils.SIDEBAR);
 
-        // ======================================
         // LOGO
-        // ======================================
-
         JPanel logoPanel = new JPanel();
 
         logoPanel.setBackground(UIUtils.SIDEBAR);
@@ -113,10 +101,7 @@ public class MainFrame extends JFrame {
                 BorderLayout.NORTH
         );
 
-        // ======================================
         // MENU
-        // ======================================
-
         JPanel menuPanel = new JPanel();
 
         menuPanel.setBackground(UIUtils.SIDEBAR);
@@ -192,10 +177,7 @@ public class MainFrame extends JFrame {
         menuPanel.add(exchangeRequestsButton);
         menuPanel.add(donationRequestsButton);
 
-        // ======================================
         // SCROLLABLE SIDEBAR
-        // ======================================
-
         JScrollPane menuScroll =
                 new JScrollPane(menuPanel);
 
@@ -219,10 +201,7 @@ public class MainFrame extends JFrame {
                 BorderLayout.CENTER
         );
 
-        // ======================================
         // USER SECTION
-        // ======================================
-
         JPanel bottomPanel = new JPanel();
 
         bottomPanel.setBackground(UIUtils.SIDEBAR);
@@ -293,10 +272,7 @@ public class MainFrame extends JFrame {
                 BorderLayout.SOUTH
         );
 
-        // ======================================
         // RIGHT PANEL
-        // ======================================
-
         JPanel rightPanel =
                 new JPanel(new BorderLayout());
 
@@ -304,10 +280,7 @@ public class MainFrame extends JFrame {
                 UIUtils.BACKGROUND
         );
 
-        // ======================================
         // TOP BAR
-        // ======================================
-
         JPanel topBar =
                 new JPanel(
                         new BorderLayout(
@@ -340,10 +313,7 @@ public class MainFrame extends JFrame {
 
         pageTitle.setForeground(UIUtils.TEXT);
 
-        // ======================================
         // SEARCH
-        // ======================================
-
         JPanel searchPanel =
                 new JPanel(
                         new BorderLayout(
@@ -419,10 +389,7 @@ public class MainFrame extends JFrame {
                 BorderLayout.NORTH
         );
 
-        // ======================================
         // CONTENT
-        // ======================================
-
         contentPanel =
                 new JPanel(
                         new BorderLayout()
@@ -437,10 +404,7 @@ public class MainFrame extends JFrame {
                 BorderLayout.CENTER
         );
 
-        // ======================================
         // MAIN PANEL
-        // ======================================
-
         mainPanel.add(
                 sidebar,
                 BorderLayout.WEST
@@ -453,10 +417,7 @@ public class MainFrame extends JFrame {
 
         setContentPane(mainPanel);
 
-        // ======================================
         // BUTTON EVENTS
-        // ======================================
-
         homeButton.addActionListener(
                 e -> showHome()
         );
@@ -548,10 +509,7 @@ public class MainFrame extends JFrame {
         );
     }
 
-    // ==========================================
     // HOME
-    // ==========================================
-
     private void showHome() {
 
         contentPanel.removeAll();
@@ -579,10 +537,7 @@ public class MainFrame extends JFrame {
                 )
         );
 
-        // ======================================
         // WELCOME CARD
-        // ======================================
-
         JPanel welcomeCard =
                 new JPanel(
                         new BorderLayout()
@@ -700,10 +655,7 @@ public class MainFrame extends JFrame {
                 Box.createVerticalStrut(25)
         );
 
-        // ======================================
         // QUICK ACTIONS
-        // ======================================
-
         JLabel quickTitle =
                 new JLabel("Quick Actions");
 
@@ -816,22 +768,7 @@ public class MainFrame extends JFrame {
                 Box.createVerticalStrut(25)
         );
 
-        // ======================================
         // LATEST MARKETPLACE LISTINGS
-        // ======================================
-
-        /*
-         * IMPORTANT FIX:
-         *
-         * Previously the title and product grid were individual
-         * BoxLayout children. Swing could calculate their preferred
-         * width instead of using the entire available content width.
-         *
-         * The complete Latest section is now placed inside a
-         * BorderLayout container which is forced to occupy the
-         * complete available width.
-         */
-
         JPanel latestSection =
                 new JPanel(
                         new BorderLayout()
@@ -917,10 +854,7 @@ public class MainFrame extends JFrame {
 
         homePanel.add(latestSection);
 
-        // ======================================
         // HOME SCROLL
-        // ======================================
-
         JScrollPane scrollPane =
                 new JScrollPane(
                         homePanel
@@ -952,10 +886,7 @@ public class MainFrame extends JFrame {
         contentPanel.repaint();
     }
 
-    // ==========================================
     // QUICK CARD
-    // ==========================================
-
     private JPanel createQuickCard(
             String title,
             String description) {
@@ -1032,9 +963,7 @@ public class MainFrame extends JFrame {
         return card;
     }
 
-    // ==========================================
     // FEATURED PRODUCTS
-    // ==========================================
 
     private void loadFeaturedProducts() {
 
@@ -1082,10 +1011,7 @@ public class MainFrame extends JFrame {
         featuredPanel.repaint();
     }
 
-    // ==========================================
     // BROWSE PRODUCTS
-    // ==========================================
-
     private void openBrowseProducts(
             String searchText) {
 
@@ -1116,10 +1042,7 @@ public class MainFrame extends JFrame {
         frame.requestFocus();
     }
 
-    // ==========================================
     // LOGOUT
-    // ==========================================
-
     private void logout() {
 
         int result =
@@ -1142,10 +1065,7 @@ public class MainFrame extends JFrame {
         }
     }
 
-    // ==========================================
     // VIEWPORT WIDTH PANEL
-    // ==========================================
-
     private static class ViewportWidthPanel
             extends JPanel
             implements Scrollable {

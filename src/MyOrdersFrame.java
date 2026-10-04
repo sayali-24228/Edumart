@@ -1,11 +1,11 @@
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class MyOrdersFrame extends JFrame {
 
@@ -15,10 +15,7 @@ public class MyOrdersFrame extends JFrame {
 
     private JLabel countLabel;
 
-
-    // ==========================================
     // CONSTRUCTOR
-    // ==========================================
 
     public MyOrdersFrame(User user) {
 
@@ -53,10 +50,7 @@ public class MyOrdersFrame extends JFrame {
         loadOrders();
     }
 
-
-    // ==========================================
     // CREATE UI
-    // ==========================================
 
     private void createUI() {
 
@@ -70,10 +64,7 @@ public class MyOrdersFrame extends JFrame {
                 UIUtils.BACKGROUND
         );
 
-
-        // ======================================
         // HEADER
-        // ======================================
 
         JPanel header =
                 new JPanel(
@@ -189,10 +180,7 @@ public class MyOrdersFrame extends JFrame {
                 BorderLayout.NORTH
         );
 
-
-        // ======================================
         // ORDERS
-        // ======================================
 
         ordersPanel =
                 new JPanel();
@@ -250,10 +238,7 @@ public class MyOrdersFrame extends JFrame {
         );
     }
 
-
-    // ==========================================
     // LOAD ORDERS
-    // ==========================================
 
     private void loadOrders() {
 
@@ -410,10 +395,7 @@ public class MyOrdersFrame extends JFrame {
         ordersPanel.repaint();
     }
 
-
-    // ==========================================
     // CREATE ORDER CARD
-    // ==========================================
 
     private JPanel createOrderCard(
             int orderId,
@@ -461,11 +443,7 @@ public class MyOrdersFrame extends JFrame {
                 )
         );
 
-
-        // ======================================
         // LEFT
-        // ======================================
-
         JPanel info =
                 new JPanel();
 
@@ -621,10 +599,7 @@ public class MyOrdersFrame extends JFrame {
                 BorderLayout.CENTER
         );
 
-
-        // ======================================
         // RIGHT
-        // ======================================
 
         JPanel right =
                 new JPanel();
@@ -732,10 +707,7 @@ public class MyOrdersFrame extends JFrame {
         return card;
     }
 
-
-    // ==========================================
     // STATUS STYLE
-    // ==========================================
 
     private void setStatusStyle(
             JLabel label,
@@ -836,10 +808,7 @@ public class MyOrdersFrame extends JFrame {
         }
     }
 
-
-    // ==========================================
     // EMPTY
-    // ==========================================
 
     private void showEmptyOrders() {
 

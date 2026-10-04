@@ -49,7 +49,9 @@ public class ProductDetailsFrame extends JFrame {
         loadRelatedProducts();
     }
 
-    // CREATE UI    
+    // ==========================================
+    // CREATE UI
+    // ==========================================
 
     private void createUI() {
 
@@ -63,6 +65,7 @@ public class ProductDetailsFrame extends JFrame {
         );
 
         // HEADER
+        // ======================================
 
         JPanel header =
                 new JPanel(
@@ -127,6 +130,7 @@ public class ProductDetailsFrame extends JFrame {
         );
 
         // PAGE
+        // ======================================
 
         JPanel page =
                 new JPanel();
@@ -162,6 +166,7 @@ public class ProductDetailsFrame extends JFrame {
         );
 
         // RELATED PRODUCTS
+        // ======================================
 
         JLabel relatedTitle =
                 new JLabel(
@@ -212,6 +217,7 @@ public class ProductDetailsFrame extends JFrame {
         );
 
         // SCROLL
+        // ======================================
 
         JScrollPane scroll =
                 new JScrollPane(
@@ -244,8 +250,10 @@ public class ProductDetailsFrame extends JFrame {
                 root
         );
     }
-    
-    // PRODUCT DETAILS CARD    
+
+    // ==========================================
+    // PRODUCT DETAILS CARD
+    // ==========================================
 
     private JPanel createProductDetailsCard() {
 
@@ -287,6 +295,7 @@ public class ProductDetailsFrame extends JFrame {
         );
 
         // IMAGE
+        // ======================================
 
         JLabel image =
                 createLargeImage(
@@ -320,6 +329,7 @@ public class ProductDetailsFrame extends JFrame {
         );
 
         // INFORMATION
+        // ======================================
 
         JPanel info =
                 new JPanel();
@@ -529,6 +539,7 @@ public class ProductDetailsFrame extends JFrame {
         );
 
         // ACTIONS
+        // ======================================
 
         JPanel actions =
                 new JPanel(
@@ -604,8 +615,10 @@ public class ProductDetailsFrame extends JFrame {
 
         return card;
     }
-    
+
+    // ==========================================
     // LARGE IMAGE
+    // ==========================================
 
     private JLabel createLargeImage(
             String path) {
@@ -691,9 +704,11 @@ public class ProductDetailsFrame extends JFrame {
 
         return label;
     }
-    
+
+    // ==========================================
     // SCALE IMAGE
-    
+    // ==========================================
+
     private Image scaleToFit(
             Image image,
             int maxWidth,
@@ -746,8 +761,10 @@ public class ProductDetailsFrame extends JFrame {
                 Image.SCALE_SMOOTH
         );
     }
-    
+
+    // ==========================================
     // RELATED PRODUCTS
+    // ==========================================
 
     private void loadRelatedProducts() {
 
@@ -804,7 +821,8 @@ public class ProductDetailsFrame extends JFrame {
     }
 
     // ADD TO CART
-    
+    // ==========================================
+
     private void addToCart() {
 
         if (
@@ -860,8 +878,10 @@ public class ProductDetailsFrame extends JFrame {
                 JOptionPane.ERROR_MESSAGE
         );
     }
-    
-    // SAFE TEXT    
+
+    // ==========================================
+    // SAFE TEXT
+    // ==========================================
 
     private String safe(
             String value,
