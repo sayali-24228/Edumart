@@ -146,8 +146,6 @@ public class MainFrame extends JFrame {
         JButton productsButton =
                 UIUtils.createSidebarButton("  My Products");
 
-        JButton favoritesButton =
-                UIUtils.createSidebarButton("  Favorites");
 
         JButton sellerOrdersButton =
                 UIUtils.createSidebarButton("  Seller Orders");
@@ -181,7 +179,6 @@ public class MainFrame extends JFrame {
         menuPanel.add(cartButton);
         menuPanel.add(ordersButton);
         menuPanel.add(productsButton);
-        menuPanel.add(favoritesButton);
         menuPanel.add(sellerOrdersButton);
         menuPanel.add(profileButton);
 
@@ -488,12 +485,6 @@ public class MainFrame extends JFrame {
 
         productsButton.addActionListener(
                 e -> new MyProductsFrame(
-                        currentUser
-                ).setVisible(true)
-        );
-
-        favoritesButton.addActionListener(
-                e -> new FavoritesFrame(
                         currentUser
                 ).setVisible(true)
         );
