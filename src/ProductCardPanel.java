@@ -1,14 +1,16 @@
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
 
 public class ProductCardPanel extends JPanel {
 
     private Product product;
     private User currentUser;
 
-
+    // ==========================================
     // CONSTRUCTOR
+    // ==========================================
+
     public ProductCardPanel(
             Product product,
             User currentUser) {
@@ -72,8 +74,10 @@ public class ProductCardPanel extends JPanel {
         createUI();
     }
 
-
+    // ==========================================
     // CREATE UI
+    // ==========================================
+
     private void createUI() {
 
         JPanel content =
@@ -91,6 +95,8 @@ public class ProductCardPanel extends JPanel {
         );
 
         // IMAGE
+        // ======================================
+
         JLabel imageLabel =
                 new JLabel(
                         "No Image"
@@ -179,6 +185,8 @@ public class ProductCardPanel extends JPanel {
         );
 
         // PRODUCT NAME
+        // ======================================
+
         String productName =
                 product.getName();
 
@@ -242,6 +250,7 @@ public class ProductCardPanel extends JPanel {
         );
 
         // CATEGORY
+        // ======================================
 
         String category =
                 product.getCategory();
@@ -297,6 +306,8 @@ public class ProductCardPanel extends JPanel {
         );
 
         // DESCRIPTION
+        // ======================================
+
         String description =
                 product.getDescription();
 
@@ -351,7 +362,10 @@ public class ProductCardPanel extends JPanel {
                 )
         );
 
+        // ======================================
         // PRICE
+        // ======================================
+
         JLabel priceLabel =
                 new JLabel(
                         "₹"
@@ -382,7 +396,10 @@ public class ProductCardPanel extends JPanel {
                 BorderLayout.CENTER
         );
 
+        // ======================================
         // BUTTONS
+        // ======================================
+
         JPanel buttons =
                 new JPanel(
                         new GridLayout(
@@ -398,6 +415,8 @@ public class ProductCardPanel extends JPanel {
         );
 
         // VIEW DETAILS
+        // ======================================
+
         JButton detailsButton =
                 new JButton(
                         "View Details"
@@ -419,7 +438,10 @@ public class ProductCardPanel extends JPanel {
                 detailsButton
         );
 
+        // ======================================
         // ADD TO CART
+        // ======================================
+
         JButton cartButton =
                 UIUtils.createButton(
                         "Add to Cart"
@@ -439,8 +461,10 @@ public class ProductCardPanel extends JPanel {
         );
     }
 
-
+    // ==========================================
     // OPEN DETAILS
+    // ==========================================
+
     private void openDetails() {
 
         new ProductDetailsFrame(
@@ -449,8 +473,10 @@ public class ProductCardPanel extends JPanel {
         ).setVisible(true);
     }
 
-
+    // ==========================================
     // LOAD IMAGE
+    // ==========================================
+
     private void loadImage(
             JLabel imageLabel) {
 
@@ -503,8 +529,10 @@ public class ProductCardPanel extends JPanel {
         );
     }
 
-
+    // ==========================================
     // ADD TO CART
+    // ==========================================
+
     private void addToCart() {
 
         if (
@@ -536,7 +564,6 @@ public class ProductCardPanel extends JPanel {
 
             return;
         }
-
         CartDAO dao =
                 new CartDAO();
 

@@ -1,10 +1,10 @@
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class MyCartFrame extends JFrame {
 
@@ -16,10 +16,7 @@ public class MyCartFrame extends JFrame {
 
     private double cartTotal = 0;
 
-
-    // ==========================================
     // CONSTRUCTOR
-    // ==========================================
 
     public MyCartFrame(User user) {
 
@@ -54,10 +51,7 @@ public class MyCartFrame extends JFrame {
         loadCart();
     }
 
-
-    // ==========================================
     // CREATE UI
-    // ==========================================
 
     private void createUI() {
 
@@ -71,10 +65,7 @@ public class MyCartFrame extends JFrame {
                 UIUtils.BACKGROUND
         );
 
-
-        // ======================================
         // HEADER
-        // ======================================
 
         JPanel header =
                 new JPanel(
@@ -149,10 +140,7 @@ public class MyCartFrame extends JFrame {
                 BorderLayout.NORTH
         );
 
-
-        // ======================================
         // CART PANEL
-        // ======================================
 
         cartPanel =
                 new JPanel();
@@ -204,10 +192,7 @@ public class MyCartFrame extends JFrame {
                 BorderLayout.CENTER
         );
 
-
-        // ======================================
         // BOTTOM
-        // ======================================
 
         JPanel bottom =
                 new JPanel(
@@ -292,10 +277,7 @@ public class MyCartFrame extends JFrame {
         );
     }
 
-
-    // ==========================================
     // LOAD CART
-    // ==========================================
 
     private void loadCart() {
 
@@ -464,10 +446,7 @@ public class MyCartFrame extends JFrame {
         cartPanel.repaint();
     }
 
-
-    // ==========================================
     // CREATE CART CARD
-    // ==========================================
 
     private JPanel createCartCard(
             int cartId,
@@ -514,11 +493,7 @@ public class MyCartFrame extends JFrame {
                         125
                 )
         );
-
-
-        // ======================================
         // IMAGE
-        // ======================================
 
         JLabel imageLabel =
                 new JLabel(
@@ -562,10 +537,7 @@ public class MyCartFrame extends JFrame {
                 BorderLayout.WEST
         );
 
-
-        // ======================================
         // INFO
-        // ======================================
 
         JPanel info =
                 new JPanel();
@@ -682,10 +654,7 @@ public class MyCartFrame extends JFrame {
                 BorderLayout.CENTER
         );
 
-
-        // ======================================
         // QUANTITY + DELETE
-        // ======================================
 
         JPanel actions =
                 new JPanel();
@@ -866,9 +835,9 @@ public class MyCartFrame extends JFrame {
     }
 
 
-    // ==========================================
+
     // UPDATE QUANTITY
-    // ==========================================
+
 
     private void updateQuantity(
                 int cartId,
@@ -944,9 +913,9 @@ public class MyCartFrame extends JFrame {
         }
 
 
-    // ==========================================
+
     // REMOVE ITEM
-    // ==========================================
+
 
     private void removeCartItem(
         int cartId) {
@@ -1032,9 +1001,9 @@ public class MyCartFrame extends JFrame {
         }
 
 
-    // ==========================================
+
     // OPEN CHECKOUT
-    // ==========================================
+
 
     private void openCheckout() {
 
@@ -1056,10 +1025,7 @@ public class MyCartFrame extends JFrame {
         ).setVisible(true);
     }
 
-
-    // ==========================================
     // LOAD IMAGE
-    // ==========================================
 
     private void loadImage(
             JLabel label,
@@ -1109,10 +1075,7 @@ public class MyCartFrame extends JFrame {
         );
     }
 
-
-    // ==========================================
     // EMPTY CART
-    // ==========================================
 
     private void showEmptyCart() {
 
@@ -1204,10 +1167,7 @@ public class MyCartFrame extends JFrame {
         );
     }
 
-
-    // ==========================================
     // ERROR
-    // ==========================================
 
     private void showError(
             String message) {

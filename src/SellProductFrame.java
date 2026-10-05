@@ -1,5 +1,3 @@
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class SellProductFrame extends JFrame {
 
@@ -20,7 +20,6 @@ public class SellProductFrame extends JFrame {
     private JComboBox<String> conditionBox;
     private JTextField imageField;
 
-    // Store the original selected image
     private File selectedImageFile;
 
     public SellProductFrame(User user) {
@@ -42,9 +41,7 @@ public class SellProductFrame extends JFrame {
         createUI();
     }
 
-    // =========================
     // CREATE UI
-    // =========================
 
     private void createUI() {
 
@@ -55,9 +52,7 @@ public class SellProductFrame extends JFrame {
                 UIUtils.BACKGROUND
         );
 
-        // =========================
         // TOP BAR
-        // =========================
 
         JPanel topBar =
                 new JPanel(new BorderLayout());
@@ -115,9 +110,7 @@ public class SellProductFrame extends JFrame {
                 BorderLayout.NORTH
         );
 
-        // =========================
         // FORM
-        // =========================
 
         JPanel formWrapper =
                 new JPanel(
@@ -165,9 +158,7 @@ public class SellProductFrame extends JFrame {
                 )
         );
 
-        // =========================
         // PRODUCT NAME
-        // =========================
 
         formPanel.add(
                 createLabel("Product Name")
@@ -189,9 +180,7 @@ public class SellProductFrame extends JFrame {
                 Box.createVerticalStrut(15)
         );
 
-        // =========================
         // DESCRIPTION
-        // =========================
 
         formPanel.add(
                 createLabel("Description")
@@ -242,9 +231,7 @@ public class SellProductFrame extends JFrame {
                 Box.createVerticalStrut(15)
         );
 
-        // =========================
         // CATEGORY
-        // =========================
 
         formPanel.add(
                 createLabel("Category")
@@ -286,9 +273,7 @@ public class SellProductFrame extends JFrame {
                 Box.createVerticalStrut(15)
         );
 
-        // =========================
         // PRICE
-        // =========================
 
         formPanel.add(
                 createLabel("Price (₹)")
@@ -310,9 +295,7 @@ public class SellProductFrame extends JFrame {
                 Box.createVerticalStrut(15)
         );
 
-        // =========================
         // CONDITION
-        // =========================
 
         formPanel.add(
                 createLabel("Condition")
@@ -349,9 +332,7 @@ public class SellProductFrame extends JFrame {
                 Box.createVerticalStrut(15)
         );
 
-        // =========================
         // IMAGE
-        // =========================
 
         formPanel.add(
                 createLabel("Product Image")
@@ -413,9 +394,7 @@ public class SellProductFrame extends JFrame {
                 Box.createVerticalStrut(25)
         );
 
-        // =========================
         // BUTTONS
-        // =========================
 
         JPanel buttonPanel =
                 new JPanel(
@@ -484,9 +463,7 @@ public class SellProductFrame extends JFrame {
         setContentPane(mainPanel);
     }
 
-    // =========================
     // LABEL CREATOR
-    // =========================
 
     private JLabel createLabel(
             String text) {
@@ -513,9 +490,7 @@ public class SellProductFrame extends JFrame {
         return label;
     }
 
-    // =========================
     // IMAGE SELECTOR
-    // =========================
 
     private void chooseImage() {
 
@@ -558,9 +533,7 @@ public class SellProductFrame extends JFrame {
         }
     }
 
-    // =========================
     // COPY IMAGE TO EDMART
-    // =========================
 
     private String saveImageToEduMart()
             throws IOException {
@@ -626,9 +599,7 @@ public class SellProductFrame extends JFrame {
         ).toString();
     }
 
-    // =========================
     // PUBLISH PRODUCT
-    // =========================
 
     private void publishProduct() {
 
@@ -657,9 +628,7 @@ public class SellProductFrame extends JFrame {
                         .getSelectedItem()
                         .toString();
 
-        // =========================
         // VALIDATION
-        // =========================
 
         if (name.isEmpty()) {
 
@@ -739,9 +708,7 @@ public class SellProductFrame extends JFrame {
             return;
         }
 
-        // =========================
         // SAVE IMAGE
-        // =========================
 
         String imagePath = "";
 
@@ -768,9 +735,7 @@ public class SellProductFrame extends JFrame {
             }
         }
 
-        // =========================
         // CREATE PRODUCT
-        // =========================
 
         Product product =
                 new Product(
@@ -783,9 +748,7 @@ public class SellProductFrame extends JFrame {
                         imagePath
                 );
 
-        // =========================
         // SAVE TO DATABASE
-        // =========================
 
         ProductDAO productDAO =
                 new ProductDAO();
@@ -818,9 +781,7 @@ public class SellProductFrame extends JFrame {
         }
     }
 
-    // =========================
     // CLEAR FORM
-    // =========================
 
     private void clearForm() {
 

@@ -1,10 +1,10 @@
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class CheckoutFrame extends JFrame {
 
@@ -21,10 +21,7 @@ public class CheckoutFrame extends JFrame {
 
     private double totalAmount = 0;
 
-
-    // ==========================================
     // CONSTRUCTOR
-    // ==========================================
 
     public CheckoutFrame(User user) {
 
@@ -59,10 +56,7 @@ public class CheckoutFrame extends JFrame {
         loadCartItems();
     }
 
-
-    // ==========================================
     // CREATE UI
-    // ==========================================
 
     private void createUI() {
 
@@ -75,12 +69,7 @@ public class CheckoutFrame extends JFrame {
         mainPanel.setBackground(
                 UIUtils.BACKGROUND
         );
-
-
-        // ======================================
         // HEADER
-        // ======================================
-
         JPanel header =
                 new JPanel(
                         new BorderLayout()
@@ -128,12 +117,7 @@ public class CheckoutFrame extends JFrame {
                 header,
                 BorderLayout.NORTH
         );
-
-
-        // ======================================
         // CONTENT
-        // ======================================
-
         JPanel content =
                 new JPanel();
 
@@ -159,12 +143,7 @@ public class CheckoutFrame extends JFrame {
                         25
                 )
         );
-
-
-        // ======================================
         // DELIVERY
-        // ======================================
-
         JPanel delivery =
                 createSection();
 
@@ -248,12 +227,7 @@ public class CheckoutFrame extends JFrame {
                         15
                 )
         );
-
-
-        // ======================================
         // ITEMS
-        // ======================================
-
         JPanel itemsSection =
                 createSection();
 
@@ -308,12 +282,7 @@ public class CheckoutFrame extends JFrame {
                         15
                 )
         );
-
-
-        // ======================================
         // PAYMENT
-        // ======================================
-
         JPanel payment =
                 createSection();
 
@@ -418,12 +387,7 @@ public class CheckoutFrame extends JFrame {
                 ),
                 BorderLayout.CENTER
         );
-
-
-        // ======================================
         // BOTTOM
-        // ======================================
-
         JPanel bottom =
                 new JPanel(
                         new BorderLayout()
@@ -507,10 +471,7 @@ public class CheckoutFrame extends JFrame {
         );
     }
 
-
-    // ==========================================
     // CREATE SECTION
-    // ==========================================
 
     private JPanel createSection() {
 
@@ -554,10 +515,7 @@ public class CheckoutFrame extends JFrame {
         return panel;
     }
 
-
-    // ==========================================
     // SECTION TITLE
-    // ==========================================
 
     private JLabel createSectionTitle(
             String text) {
@@ -585,10 +543,7 @@ public class CheckoutFrame extends JFrame {
         return label;
     }
 
-
-    // ==========================================
     // LOAD CART ITEMS
-    // ==========================================
 
     private void loadCartItems() {
 
@@ -771,10 +726,7 @@ public class CheckoutFrame extends JFrame {
         itemsPanel.repaint();
     }
 
-
-    // ==========================================
     // PLACE ORDER
-    // ==========================================
 
     private void placeOrder() {
 
@@ -855,10 +807,7 @@ public class CheckoutFrame extends JFrame {
         }
     }
 
-
-    // ==========================================
     // PAYMENT METHOD
-    // ==========================================
 
     private String getSelectedPaymentMethod() {
 

@@ -7,9 +7,9 @@ import java.util.List;
 
 public class CartDAO {
 
-    // ==========================================
+    
     // ADD TO CART
-    // ==========================================
+    
 
     public boolean addToCart(int userId, int productId) {
 
@@ -101,9 +101,9 @@ public class CartDAO {
     }
 
 
-    // ==========================================
+    
     // GET CART PRODUCTS
-    // ==========================================
+    
 
     public List<Product> getCartProducts(int userId) {
 
@@ -188,10 +188,7 @@ public class CartDAO {
         return products;
     }
 
-
-    // ==========================================
-    // GET QUANTITY
-    // ==========================================
+    // GET QUANTITY    
 
     public int getQuantity(
             int userId,
@@ -238,11 +235,7 @@ public class CartDAO {
 
         return 0;
     }
-
-
-    // ==========================================
-    // UPDATE QUANTITY
-    // ==========================================
+    // UPDATE QUANTITY    
 
     public boolean updateQuantity(
             int userId,
@@ -300,10 +293,7 @@ public class CartDAO {
         }
     }
 
-
-    // ==========================================
-    // REMOVE FROM CART
-    // ==========================================
+    // REMOVE FROM CART    
 
     public boolean removeFromCart(
             int userId,
@@ -346,10 +336,7 @@ public class CartDAO {
         }
     }
 
-
-    // ==========================================
-    // CLEAR CART
-    // ==========================================
+    // CLEAR CART    
 
     public boolean clearCart(int userId) {
 

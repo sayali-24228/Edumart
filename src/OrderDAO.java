@@ -5,9 +5,7 @@ import java.sql.SQLException;
 
 public class OrderDAO {
 
-    // ==========================================
     // PLACE ORDER FROM CART
-    // ==========================================
 
     public boolean placeOrderFromCart(int userId) {
 
@@ -23,11 +21,8 @@ public class OrderDAO {
 
             con.setAutoCommit(false);
 
-
-            // ======================================
             // GET CART ITEMS
-            // ======================================
-
+            
             String cartQuery =
                     "SELECT "
                     + "c.product_id, "
@@ -74,12 +69,9 @@ public class OrderDAO {
 
                         double totalPrice =
                                 price * quantity;
-
-
-                        // ==================================
+                      
                         // INSERT ORDER
-                        // ==================================
-
+                        
                         String orderQuery =
                                 "INSERT INTO orders "
                                 + "(buyer_id, product_id, quantity, total_price, order_status) "
@@ -132,10 +124,7 @@ public class OrderDAO {
                 }
             }
 
-
-            // ======================================
-            // CLEAR CART
-            // ======================================
+            // CLEAR CART            
 
             String deleteCartQuery =
                     "DELETE FROM cart WHERE user_id = ?";
@@ -157,10 +146,8 @@ public class OrderDAO {
             }
 
 
-            // ======================================
             // COMMIT
-            // ======================================
-
+            
             con.commit();
 
 
