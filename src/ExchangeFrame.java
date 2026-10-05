@@ -30,11 +30,6 @@ public class ExchangeFrame extends JFrame {
 
     private ExchangeDAO exchangeDAO;
 
-
-    // ==========================================
-    // CONSTRUCTOR
-    // ==========================================
-
     public ExchangeFrame(User user) {
 
         currentUser = user;
@@ -58,11 +53,6 @@ public class ExchangeFrame extends JFrame {
         loadListings();
     }
 
-
-    // ==========================================
-    // CREATE UI
-    // ==========================================
-
     private void createUI() {
 
         JPanel mainPanel =
@@ -73,11 +63,6 @@ public class ExchangeFrame extends JFrame {
         mainPanel.setBackground(
                 UIUtils.BACKGROUND
         );
-
-
-        // ======================================
-        // HEADER
-        // ======================================
 
         JPanel header =
                 new JPanel();
@@ -102,7 +87,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         JLabel title =
                 new JLabel(
                         "Exchange Items"
@@ -119,7 +103,6 @@ public class ExchangeFrame extends JFrame {
         title.setForeground(
                 Color.WHITE
         );
-
 
         JLabel subtitle =
                 new JLabel(
@@ -143,7 +126,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         header.add(title);
 
         header.add(
@@ -152,16 +134,10 @@ public class ExchangeFrame extends JFrame {
 
         header.add(subtitle);
 
-
         mainPanel.add(
                 header,
                 BorderLayout.NORTH
         );
-
-
-        // ======================================
-        // CONTENT
-        // ======================================
 
         JPanel content =
                 new JPanel(
@@ -186,7 +162,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         content.add(
                 createFormCard()
         );
@@ -195,22 +170,15 @@ public class ExchangeFrame extends JFrame {
                 createListingsCard()
         );
 
-
         mainPanel.add(
                 content,
                 BorderLayout.CENTER
         );
 
-
         setContentPane(
                 mainPanel
         );
     }
-
-
-    // ==========================================
-    // FORM CARD
-    // ==========================================
 
     private JPanel createFormCard() {
 
@@ -237,7 +205,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         JLabel title =
                 new JLabel(
                         "Create Exchange Listing"
@@ -255,12 +222,10 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.TEXT
         );
 
-
         card.add(
                 title,
                 BorderLayout.NORTH
         );
-
 
         JPanel form =
                 new JPanel();
@@ -276,15 +241,11 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
-        // IMAGE
-
         form.add(
                 fieldLabel(
                         "Item Photo *"
                 )
         );
-
 
         JPanel imagePanel =
                 new JPanel(
@@ -305,7 +266,6 @@ public class ExchangeFrame extends JFrame {
                         105
                 )
         );
-
 
         imagePreview =
                 new JLabel(
@@ -348,7 +308,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         JButton chooseImage =
                 UIUtils.createButton(
                         "Choose Image"
@@ -361,11 +320,9 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         chooseImage.addActionListener(
                 e -> chooseImage()
         );
-
 
         imagePanel.add(
                 imagePreview,
@@ -377,16 +334,11 @@ public class ExchangeFrame extends JFrame {
                 BorderLayout.EAST
         );
 
-
         form.add(imagePanel);
-
 
         form.add(
                 Box.createVerticalStrut(10)
         );
-
-
-        // ITEM NAME
 
         form.add(
                 fieldLabel(
@@ -406,13 +358,9 @@ public class ExchangeFrame extends JFrame {
                 itemNameField
         );
 
-
         form.add(
                 Box.createVerticalStrut(9)
         );
-
-
-        // CATEGORY + CONDITION
 
         JPanel categoryRow =
                 new JPanel(
@@ -435,7 +383,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         JPanel categoryPanel =
                 new JPanel();
 
@@ -450,14 +397,12 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         categoryPanel.add(
                 fieldLabel(
                         "Category *"
                 ),
                 BorderLayout.NORTH
         );
-
 
         categoryCombo =
                 new JComboBox<>(
@@ -478,12 +423,10 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.normalFont()
         );
 
-
         categoryPanel.add(
                 categoryCombo,
                 BorderLayout.CENTER
         );
-
 
         JPanel conditionPanel =
                 new JPanel();
@@ -499,14 +442,12 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         conditionPanel.add(
                 fieldLabel(
                         "Condition *"
                 ),
                 BorderLayout.NORTH
         );
-
 
         conditionCombo =
                 new JComboBox<>(
@@ -523,12 +464,10 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.normalFont()
         );
 
-
         conditionPanel.add(
                 conditionCombo,
                 BorderLayout.CENTER
         );
-
 
         categoryRow.add(
                 categoryPanel
@@ -538,18 +477,13 @@ public class ExchangeFrame extends JFrame {
                 conditionPanel
         );
 
-
         form.add(
                 categoryRow
         );
 
-
         form.add(
                 Box.createVerticalStrut(9)
         );
-
-
-        // DESCRIPTION
 
         form.add(
                 fieldLabel(
@@ -557,12 +491,10 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         descriptionArea =
                 createArea(
                         "Describe your item..."
                 );
-
 
         JScrollPane descriptionScroll =
                 createScrollPane(
@@ -570,20 +502,13 @@ public class ExchangeFrame extends JFrame {
                         62
                 );
 
-
         form.add(
                 descriptionScroll
         );
 
-
         form.add(
                 Box.createVerticalStrut(12)
         );
-
-
-        // ======================================
-        // WHAT YOU WANT
-        // ======================================
 
         JLabel exchangeTitle =
                 new JLabel(
@@ -602,25 +527,19 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.PRIMARY
         );
 
-
         form.add(
                 exchangeTitle
         );
 
-
         form.add(
                 Box.createVerticalStrut(7)
         );
-
-
-        // WANTED ITEM
 
         form.add(
                 fieldLabel(
                         "Desired Item *"
                 )
         );
-
 
         wantedItemField =
                 UIUtils.createTextField();
@@ -630,25 +549,19 @@ public class ExchangeFrame extends JFrame {
                 38
         );
 
-
         form.add(
                 wantedItemField
         );
 
-
         form.add(
                 Box.createVerticalStrut(8)
         );
-
-
-        // WANTED CATEGORY
 
         form.add(
                 fieldLabel(
                         "Preferred Category"
                 )
         );
-
 
         wantedCategoryCombo =
                 new JComboBox<>(
@@ -677,18 +590,13 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         form.add(
                 wantedCategoryCombo
         );
 
-
         form.add(
                 Box.createVerticalStrut(8)
         );
-
-
-        // REQUIREMENTS
 
         form.add(
                 fieldLabel(
@@ -696,12 +604,10 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         requirementsArea =
                 createArea(
                         "Example: Recent edition, good condition..."
                 );
-
 
         JScrollPane requirementsScroll =
                 createScrollPane(
@@ -709,16 +615,13 @@ public class ExchangeFrame extends JFrame {
                         55
                 );
 
-
         form.add(
                 requirementsScroll
         );
 
-
         form.add(
                 Box.createVerticalStrut(12)
         );
-
 
         JButton createButton =
                 UIUtils.createButton(
@@ -732,16 +635,13 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         createButton.addActionListener(
                 e -> createListing()
         );
 
-
         form.add(
                 createButton
         );
-
 
         JScrollPane formScroll =
                 new JScrollPane(
@@ -757,20 +657,13 @@ public class ExchangeFrame extends JFrame {
         formScroll.getVerticalScrollBar()
                 .setUnitIncrement(12);
 
-
         card.add(
                 formScroll,
                 BorderLayout.CENTER
         );
 
-
         return card;
     }
-
-
-    // ==========================================
-    // LISTINGS CARD
-    // ==========================================
 
     private JPanel createListingsCard() {
 
@@ -797,7 +690,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         JLabel title =
                 new JLabel(
                         "Available Exchanges"
@@ -815,12 +707,10 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.TEXT
         );
 
-
         card.add(
                 title,
                 BorderLayout.NORTH
         );
-
 
         listingsPanel =
                 new JPanel();
@@ -836,7 +726,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         JScrollPane scroll =
                 new JScrollPane(
                         listingsPanel
@@ -851,20 +740,13 @@ public class ExchangeFrame extends JFrame {
         scroll.getVerticalScrollBar()
                 .setUnitIncrement(15);
 
-
         card.add(
                 scroll,
                 BorderLayout.CENTER
         );
 
-
         return card;
     }
-
-
-    // ==========================================
-    // CREATE LISTING
-    // ==========================================
 
     private void createListing() {
 
@@ -873,46 +755,35 @@ public class ExchangeFrame extends JFrame {
                         .getText()
                         .trim();
 
-
         String description =
                 descriptionArea
                         .getText()
                         .trim();
-
 
         String wantedItem =
                 wantedItemField
                         .getText()
                         .trim();
 
-
         String requirements =
                 requirementsArea
                         .getText()
                         .trim();
-
 
         String category =
                 categoryCombo
                         .getSelectedItem()
                         .toString();
 
-
         String condition =
                 conditionCombo
                         .getSelectedItem()
                         .toString();
 
-
         String wantedCategory =
                 wantedCategoryCombo
                         .getSelectedItem()
                         .toString();
-
-
-        // ======================================
-        // VALIDATION
-        // ======================================
 
         if (itemName.isEmpty()) {
 
@@ -926,7 +797,6 @@ public class ExchangeFrame extends JFrame {
             return;
         }
 
-
         if (wantedItem.isEmpty()) {
 
             JOptionPane.showMessageDialog(
@@ -938,7 +808,6 @@ public class ExchangeFrame extends JFrame {
 
             return;
         }
-
 
         if (selectedImagePath.isEmpty()) {
 
@@ -952,16 +821,10 @@ public class ExchangeFrame extends JFrame {
             return;
         }
 
-
-        // ======================================
-        // COPY IMAGE
-        // ======================================
-
         String savedImage =
                 saveImage(
                         selectedImagePath
                 );
-
 
         if (savedImage == null) {
 
@@ -974,11 +837,6 @@ public class ExchangeFrame extends JFrame {
 
             return;
         }
-
-
-        // ======================================
-        // DATABASE
-        // ======================================
 
         boolean success =
                 exchangeDAO.addExchange(
@@ -994,7 +852,6 @@ public class ExchangeFrame extends JFrame {
                         requirements
                 );
 
-
         if (success) {
 
             JOptionPane.showMessageDialog(
@@ -1003,7 +860,6 @@ public class ExchangeFrame extends JFrame {
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE
             );
-
 
             clearForm();
 
@@ -1020,11 +876,6 @@ public class ExchangeFrame extends JFrame {
         }
     }
 
-
-    // ==========================================
-    // CHOOSE IMAGE
-    // ==========================================
-
     private void chooseImage() {
 
         JFileChooser chooser =
@@ -1034,10 +885,8 @@ public class ExchangeFrame extends JFrame {
                 "Select Item Image"
         );
 
-
         int result =
                 chooser.showOpenDialog(this);
-
 
         if (
                 result ==
@@ -1047,10 +896,8 @@ public class ExchangeFrame extends JFrame {
             File file =
                     chooser.getSelectedFile();
 
-
             String name =
                     file.getName().toLowerCase();
-
 
             if (
                     !name.endsWith(".jpg")
@@ -1072,16 +919,13 @@ public class ExchangeFrame extends JFrame {
                 return;
             }
 
-
             selectedImagePath =
                     file.getAbsolutePath();
-
 
             ImageIcon icon =
                     new ImageIcon(
                             selectedImagePath
                     );
-
 
             Image scaled =
                     icon.getImage()
@@ -1091,7 +935,6 @@ public class ExchangeFrame extends JFrame {
                                     Image.SCALE_SMOOTH
                             );
 
-
             imagePreview.setText("");
 
             imagePreview.setIcon(
@@ -1099,11 +942,6 @@ public class ExchangeFrame extends JFrame {
             );
         }
     }
-
-
-    // ==========================================
-    // SAVE IMAGE
-    // ==========================================
 
     private String saveImage(
             String originalPath) {
@@ -1116,42 +954,35 @@ public class ExchangeFrame extends JFrame {
                             "exchanges"
                     );
 
-
             Files.createDirectories(
                     folder
             );
-
 
             File original =
                     new File(
                             originalPath
                     );
 
-
             String extension =
                     getExtension(
                             original.getName()
                     );
-
 
             String fileName =
                     "exchange_"
                     + System.currentTimeMillis()
                     + extension;
 
-
             Path destination =
                     folder.resolve(
                             fileName
                     );
-
 
             Files.copy(
                     original.toPath(),
                     destination,
                     StandardCopyOption.REPLACE_EXISTING
             );
-
 
             return destination
                     .toString()
@@ -1168,43 +999,29 @@ public class ExchangeFrame extends JFrame {
         }
     }
 
-
-    // ==========================================
-    // GET EXTENSION
-    // ==========================================
-
     private String getExtension(
             String fileName) {
 
         int index =
                 fileName.lastIndexOf('.');
 
-
         if (index == -1) {
             return ".jpg";
         }
-
 
         return fileName.substring(
                 index
         );
     }
 
-
-    // ==========================================
-    // LOAD LISTINGS
-    // ==========================================
-
     private void loadListings() {
 
         listingsPanel.removeAll();
-
 
         List<ExchangeDAO.ExchangeData> list =
                 exchangeDAO.getAvailableExchanges(
                         currentUser.getId()
                 );
-
 
         if (
                 list == null
@@ -1234,7 +1051,6 @@ public class ExchangeFrame extends JFrame {
                     )
             );
 
-
             listingsPanel.add(empty);
 
         } else {
@@ -1250,23 +1066,16 @@ public class ExchangeFrame extends JFrame {
                         )
                 );
 
-
                 listingsPanel.add(
                         Box.createVerticalStrut(12)
                 );
             }
         }
 
-
         listingsPanel.revalidate();
 
         listingsPanel.repaint();
     }
-
-
-    // ==========================================
-    // EXCHANGE CARD
-    // ==========================================
 
     private JPanel createExchangeCard(
             ExchangeDAO.ExchangeData exchange) {
@@ -1308,26 +1117,15 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
-        // ======================================
-        // IMAGE
-        // ======================================
-
         JLabel image =
                 createProductImage(
                         exchange.imagePath
                 );
 
-
         card.add(
                 image,
                 BorderLayout.WEST
         );
-
-
-        // ======================================
-        // DETAILS
-        // ======================================
 
         JPanel details =
                 new JPanel();
@@ -1347,7 +1145,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         JLabel name =
                 new JLabel(
                         exchange.offeredItem
@@ -1365,14 +1162,11 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.TEXT
         );
 
-
         details.add(name);
-
 
         details.add(
                 Box.createVerticalStrut(4)
         );
-
 
         JLabel category =
                 new JLabel(
@@ -1396,14 +1190,11 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.MUTED
         );
 
-
         details.add(category);
-
 
         details.add(
                 Box.createVerticalStrut(10)
         );
-
 
         JLabel offer =
                 new JLabel(
@@ -1425,11 +1216,9 @@ public class ExchangeFrame extends JFrame {
 
         details.add(offer);
 
-
         details.add(
                 Box.createVerticalStrut(7)
         );
-
 
         JLabel wanted =
                 new JLabel(
@@ -1451,11 +1240,9 @@ public class ExchangeFrame extends JFrame {
 
         details.add(wanted);
 
-
         details.add(
                 Box.createVerticalStrut(5)
         );
-
 
         JLabel wantedCategory =
                 new JLabel(
@@ -1478,16 +1265,13 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.MUTED
         );
 
-
         details.add(
                 wantedCategory
         );
 
-
         details.add(
                 Box.createVerticalStrut(7)
         );
-
 
         JLabel owner =
                 new JLabel(
@@ -1507,14 +1291,11 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.MUTED
         );
 
-
         details.add(owner);
-
 
         details.add(
                 Box.createVerticalStrut(9)
         );
-
 
         JButton requestButton =
                 UIUtils.createButton(
@@ -1528,32 +1309,23 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         requestButton.addActionListener(
                 e -> sendExchangeRequest(
                         exchange
                 )
         );
 
-
         details.add(
                 requestButton
         );
-
 
         card.add(
                 details,
                 BorderLayout.CENTER
         );
 
-
         return card;
     }
-
-
-    // ==========================================
-    // IMAGE LABEL
-    // ==========================================
 
     private JLabel createProductImage(
             String path) {
@@ -1585,7 +1357,6 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.MUTED
         );
 
-
         if (
                 path != null
                 &&
@@ -1595,14 +1366,12 @@ public class ExchangeFrame extends JFrame {
             File file =
                     new File(path);
 
-
             if (file.exists()) {
 
                 ImageIcon icon =
                         new ImageIcon(
                                 path
                         );
-
 
                 Image image =
                         icon.getImage()
@@ -1612,7 +1381,6 @@ public class ExchangeFrame extends JFrame {
                                         Image.SCALE_SMOOTH
                                 );
 
-
                 label.setText("");
 
                 label.setIcon(
@@ -1621,14 +1389,8 @@ public class ExchangeFrame extends JFrame {
             }
         }
 
-
         return label;
     }
-
-
-    // ==========================================
-    // REQUEST EXCHANGE
-    // ==========================================
 
     private void sendExchangeRequest(
             ExchangeDAO.ExchangeData exchange) {
@@ -1646,12 +1408,10 @@ public class ExchangeFrame extends JFrame {
                 UIUtils.normalFont()
         );
 
-
         JScrollPane scroll =
                 new JScrollPane(
                         messageArea
                 );
-
 
         JPanel panel =
                 new JPanel(
@@ -1668,7 +1428,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         panel.add(
                 new JLabel(
                         "Write a message to "
@@ -1678,12 +1437,10 @@ public class ExchangeFrame extends JFrame {
                 BorderLayout.NORTH
         );
 
-
         panel.add(
                 scroll,
                 BorderLayout.CENTER
         );
-
 
         int result =
                 JOptionPane.showConfirmDialog(
@@ -1694,7 +1451,6 @@ public class ExchangeFrame extends JFrame {
                         JOptionPane.PLAIN_MESSAGE
                 );
 
-
         if (
                 result !=
                 JOptionPane.OK_OPTION
@@ -1702,12 +1458,10 @@ public class ExchangeFrame extends JFrame {
             return;
         }
 
-
         String message =
                 messageArea
                         .getText()
                         .trim();
-
 
         if (message.isEmpty()) {
 
@@ -1716,10 +1470,8 @@ public class ExchangeFrame extends JFrame {
                     + "with your item.";
         }
 
-
         ExchangeRequestDAO requestDAO =
                 new ExchangeRequestDAO();
-
 
         boolean success =
                 requestDAO.sendRequest(
@@ -1727,7 +1479,6 @@ public class ExchangeFrame extends JFrame {
                         currentUser.getId(),
                         message
                 );
-
 
         if (success) {
 
@@ -1748,11 +1499,6 @@ public class ExchangeFrame extends JFrame {
             );
         }
     }
-
-
-    // ==========================================
-    // CLEAR FORM
-    // ==========================================
 
     private void clearForm() {
 
@@ -1776,11 +1522,6 @@ public class ExchangeFrame extends JFrame {
 
         imagePreview.setText("No Image");
     }
-
-
-    // ==========================================
-    // HELPERS
-    // ==========================================
 
     private JLabel fieldLabel(
             String text) {
@@ -1809,10 +1550,8 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         return label;
     }
-
 
     private JTextArea createArea(
             String tooltip) {
@@ -1841,10 +1580,8 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         return area;
     }
-
 
     private JScrollPane createScrollPane(
             JTextArea area,
@@ -1875,10 +1612,8 @@ public class ExchangeFrame extends JFrame {
                 )
         );
 
-
         return scroll;
     }
-
 
     private void setHeight(
             JComponent component,
@@ -1891,7 +1626,6 @@ public class ExchangeFrame extends JFrame {
                 )
         );
     }
-
 
     private String safe(
             String value,
